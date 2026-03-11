@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.f24621696.models;
 
+import bg.tu_varna.sit.f24621696.enums.ItemCategory;
+
 public class MenuItem {
     private int ID;
     private String name;

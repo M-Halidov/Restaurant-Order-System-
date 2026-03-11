@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.f24621696.models;
 
+import bg.tu_varna.sit.f24621696.enums.OrderStatus;
+
 import java.util.ArrayList;
 
 public class Order {

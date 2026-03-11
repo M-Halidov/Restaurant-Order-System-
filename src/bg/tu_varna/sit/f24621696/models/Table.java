@@ -1,5 +1,7 @@
 package bg.tu_varna.sit.f24621696.models;
 
+import bg.tu_varna.sit.f24621696.enums.TableStatus;
+
 public class Table {
     private int ID;
     private int numOfSeats;
