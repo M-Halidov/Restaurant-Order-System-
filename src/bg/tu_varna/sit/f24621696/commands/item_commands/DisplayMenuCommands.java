@@ -1,4 +1,4 @@
-package bg.tu_varna.sit.f24621696.commands;
+package bg.tu_varna.sit.f24621696.commands.item_commands;
 
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
