@@ -2,6 +2,8 @@ package bg.tu_varna.sit.f24621696.models;
 
 import bg.tu_varna.sit.f24621696.enums.ItemCategory;
 
+import java.util.Objects;
+
 public class MenuItem {
     private static int nextID = 1;
     private int ID;
@@ -28,6 +30,17 @@ public class MenuItem {
     public void setName(String name) {this.name = name;}
     public void setPrice(double price) {this.price = price;}
     public void setQuantity(int quantity) {this.quantity = quantity;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof MenuItem menuItem)) return false;
+        return ID == menuItem.ID && Double.compare(price, menuItem.price) == 0 && quantity == menuItem.quantity && Objects.equals(name, menuItem.name) && category == menuItem.category;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, name, category, price, quantity);
+    }
 
     @Override
     public String toString() {
