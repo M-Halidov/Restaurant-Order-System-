@@ -14,7 +14,7 @@ public class AddItemCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         if (args.length != 4) {
             throw new CommandException("Invalid amount of arguments!\nadditem <name> <category> <price> <quantity>");
         }
@@ -41,5 +41,6 @@ public class AddItemCommand implements Command {
 
         MenuItem item = new MenuItem(name, itemCategory, price, quantity);
         menuItemRepo.add(item);
+        return "Successfully created item: " + item;
     }
 }

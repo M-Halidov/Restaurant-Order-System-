@@ -13,7 +13,7 @@ public class OpenOrderCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         if (args.length != 1) {
             throw new CommandException("Invalid amount of arguments!\nopenorder <tableNumber>");
         }
@@ -27,5 +27,6 @@ public class OpenOrderCommand implements Command {
 
         Order order = new Order(tableNumber);
         orderRepo.add(order);
+        return "Successfully opened order!";
     }
 }

@@ -7,9 +7,10 @@ import bg.tu_varna.sit.f24621696.models.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItemRepo implements RepoInterface {
+public class MenuItemRepo implements RepoInterface<MenuItem> {
     private List<MenuItem> menuItems = new ArrayList<>();
 
+    @Override
     public void add(MenuItem item) {
         if (menuItems.contains(item)) {
             throw new MenuItemException("Repo already contains this item!");
@@ -17,6 +18,7 @@ public class MenuItemRepo implements RepoInterface {
         menuItems.add(item);
     }
 
+    @Override
     public void remove(int ID) {
         for (MenuItem item : menuItems) {
             if (item.getID() == ID) {
@@ -29,7 +31,8 @@ public class MenuItemRepo implements RepoInterface {
         System.out.println("Item was not found in the menu!");
     }
 
-    public List<MenuItem> getMenuItems() {
+    @Override
+    public List<MenuItem> getList() {
         return menuItems;
     }
 }

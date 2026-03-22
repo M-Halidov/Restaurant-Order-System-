@@ -12,7 +12,7 @@ public class RemoveItemCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         if (args.length != 1) {
             throw new CommandException("Invalid amount of arguments!\nremoveitem <itemID>");
         }
@@ -24,5 +24,6 @@ public class RemoveItemCommand implements Command {
             throw new CommandException("ID must be a whole number!");
         }
         menuItemRepo.remove(ID);
+        return "Item removed successfully!";
     }
 }

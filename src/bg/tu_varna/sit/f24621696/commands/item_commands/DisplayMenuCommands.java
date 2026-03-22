@@ -12,11 +12,14 @@ public class DisplayMenuCommands implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         int i = 1;
-        for (MenuItem item : menuItemRepo.getMenuItems()) {
-            System.out.println("Menu Item " + i++);
-            System.out.println(item + "\n");
+        StringBuilder sb = new StringBuilder();
+        for (MenuItem item : menuItemRepo.getList()) {
+            sb.append("Menu Item " + i++ + " ");
+            sb.append(item + "\n");
         }
+
+        return sb.toString();
     }
 }

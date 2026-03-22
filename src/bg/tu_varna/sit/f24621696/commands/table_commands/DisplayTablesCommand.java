@@ -12,7 +12,7 @@ public class DisplayTablesCommand implements Command {
     @Override
     public void execute(String[] args) {
         System.out.println("All tables:\n");
-        for (Table table : tableRepo.getTableList()) {
+        for (Table table : tableRepo.getList()) {
             System.out.println(table);
         }
     }

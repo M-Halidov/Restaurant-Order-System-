@@ -1,6 +1,9 @@
 package bg.tu_varna.sit.f24621696.interfaces;
 
-public interface RepoInterface {
-    //void add();
-    //void remove();
+import java.util.List;
+
+public interface RepoInterface<T> {
+    void add(T t);
+    void remove(int ID);
+    List<T> getList();
 }
