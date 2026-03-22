@@ -13,10 +13,11 @@ public class Table {
         this.status = TableStatus.FREE;
     }
 
-    public int getId() {return ID;}
+    public int getID() {return ID;}
     public int getNumOfSeats() {return numOfSeats;}
     public TableStatus getStatus() {return status;}
 
     public void setNumOfSeats(int numOfSeats) {this.numOfSeats = numOfSeats;}
     public void setStatus(TableStatus status) {this.status = status;}
+
 }

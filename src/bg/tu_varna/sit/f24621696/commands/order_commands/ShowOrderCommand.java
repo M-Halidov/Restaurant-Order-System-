@@ -28,17 +28,7 @@ public class ShowOrderCommand implements Command {
             throw new CommandException("orderID must be a whole number!");
         }
 
-        Order order = null;
-        for (Order currOrder : orderRepo.getList()) {
-            if (currOrder.getID() == orderID) {
-                order = currOrder;
-                break;
-            }
-        }
-        if (order == null) {
-            throw new CommandException("Order with the ID: " + orderID + ", was not found!");
-        }
-
+        Order order = orderRepo.getInstance(orderID);
 
         StringBuilder sb = new StringBuilder();
         sb.append("---Order---").append("\nOrder Status: " + order.getStatus());

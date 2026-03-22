@@ -32,16 +32,7 @@ public class RemoveFromOrderCommand implements Command {
             throw new CommandException("The arguments must be whole numbers!");
         }
 
-        Order order = null;
-        for (Order currOrder : orderRepo.getList()) {
-            if (currOrder.getID() == orderID) {
-                order = currOrder;
-                break;
-            }
-        }
-        if (order == null) {
-            throw new CommandException("Order with the ID: " + orderID + ", was not found!");
-        }
+        Order order = orderRepo.getInstance(orderID);
 
         order.getOrderList().remove(itemID);
         return "Successfully removed item from order!";

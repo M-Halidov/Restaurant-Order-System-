@@ -11,7 +11,7 @@ public class AddTableCommand implements Command {
     public AddTableCommand(TableRepo tableRepo) { this.tableRepo = tableRepo; }
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         if (args.length != 2) {
             throw new CommandException("Invalid amount of arguments!\naddtable <number> <seats>");
         }
@@ -28,5 +28,6 @@ public class AddTableCommand implements Command {
 
         Table table = new Table(ID, seats);
         tableRepo.add(table);
+        return "Successfully added table!";
     }
 }

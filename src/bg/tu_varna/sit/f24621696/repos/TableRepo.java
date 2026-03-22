@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.f24621696.repos;
 
+import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.TableException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.Table;
@@ -21,7 +22,7 @@ public class TableRepo implements RepoInterface<Table> {
     @Override
     public void remove(int ID) {
         for (Table table : tableList) {
-            if (table.getId() == ID) {
+            if (table.getID() == ID) {
                 tableList.remove(table);
                 System.out.println("Table removed successfully!");
                 return;
@@ -29,6 +30,22 @@ public class TableRepo implements RepoInterface<Table> {
         }
 
         System.out.println("Table was not found!");
+    }
+
+    @Override
+    public Table getInstance(int ID) {
+        Table table = null;
+        for (Table currTable : tableList) {
+            if (currTable.getID() == ID) {
+                table = currTable;
+                break;
+            }
+        }
+        if (table == null) {
+            throw new CommandException("Order with the ID: " + ID + ", was not found!");
+        }
+
+        return table;
     }
 
     @Override

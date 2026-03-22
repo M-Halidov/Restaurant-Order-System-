@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.f24621696.repos;
 
+import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
@@ -29,6 +30,22 @@ public class MenuItemRepo implements RepoInterface<MenuItem> {
         }
 
         System.out.println("Item was not found in the menu!");
+    }
+
+    @Override
+    public MenuItem getInstance(int ID) {
+        MenuItem item = null;
+        for (MenuItem currItem : menuItems) {
+            if (currItem.getID() == ID) {
+                item = currItem;
+                break;
+            }
+        }
+        if (item == null) {
+            throw new CommandException("Order with the ID: " + ID + ", was not found!");
+        }
+
+        return item;
     }
 
     @Override

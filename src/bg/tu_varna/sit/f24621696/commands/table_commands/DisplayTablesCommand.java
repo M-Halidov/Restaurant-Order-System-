@@ -10,10 +10,13 @@ public class DisplayTablesCommand implements Command {
     public DisplayTablesCommand(TableRepo tableRepo) {this.tableRepo = tableRepo;}
 
     @Override
-    public void execute(String[] args) {
-        System.out.println("All tables:\n");
+    public String execute(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("---Tables---");
         for (Table table : tableRepo.getList()) {
-            System.out.println(table);
+            sb.append(table).append("\n");
         }
+
+        return sb.toString();
     }
 }

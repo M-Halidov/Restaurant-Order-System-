@@ -7,6 +7,8 @@ import bg.tu_varna.sit.f24621696.models.Order;
 import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
 
+import java.awt.*;
+
 public class AddToOrderCommand implements Command {
     private OrderRepo orderRepo;
     private MenuItemRepo menuItemRepo;
@@ -34,27 +36,8 @@ public class AddToOrderCommand implements Command {
             throw new CommandException("The arguments must be whole numbers!");
         }
 
-        Order order = null;
-        for (Order currOrder : orderRepo.getList()) {
-            if (currOrder.getID() == orderID) {
-                order = currOrder;
-                break;
-            }
-        }
-        if (order == null) {
-            throw new CommandException("Order with the ID: " + orderID + ", was not found!");
-        }
-
-        MenuItem item = null;
-        for (MenuItem currItem : menuItemRepo.getList()) {
-            if (currItem.getID() == itemID) {
-                item = currItem;
-                break;
-            }
-        }
-        if (item == null) {
-            throw new CommandException("Item with the ID: " + itemID + ", was not found!");
-        }
+        Order order = orderRepo.getInstance(orderID);
+        MenuItem item = menuItemRepo.getInstance(itemID);
 
         if (!order.getOrderList().isEmpty()) {
             order.getOrderList().putIfAbsent(item.getID(), item);

@@ -10,7 +10,7 @@ public class RemoveTableCommand implements Command {
     public RemoveTableCommand(TableRepo tableRepo) {this.tableRepo = tableRepo;}
 
     @Override
-    public void execute(String[] args) {
+    public String execute(String[] args) {
         if (args.length != 1) {
             throw new CommandException("Invalid amount of arguments!\nremovetable <number>");
         }
@@ -23,5 +23,6 @@ public class RemoveTableCommand implements Command {
         }
 
         tableRepo.remove(ID);
+        return "Table removed successfully!";
     }
 }
