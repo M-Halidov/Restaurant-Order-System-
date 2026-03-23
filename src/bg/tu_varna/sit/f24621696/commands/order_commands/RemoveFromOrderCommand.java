@@ -2,7 +2,6 @@ package bg.tu_varna.sit.f24621696.commands.order_commands;
 
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
-import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.models.Order;
 import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;

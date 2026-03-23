@@ -1,15 +1,20 @@
 package bg.tu_varna.sit.f24621696.commands.order_commands;
 
+import bg.tu_varna.sit.f24621696.enums.TableStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.Order;
+import bg.tu_varna.sit.f24621696.models.Table;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
+import bg.tu_varna.sit.f24621696.repos.TableRepo;
 
 public class OpenOrderCommand implements Command {
     private OrderRepo orderRepo;
+    private TableRepo tableRepo;
 
-    public OpenOrderCommand(OrderRepo orderRepo) {
+    public OpenOrderCommand(OrderRepo orderRepo, TableRepo tableRepo) {
         this.orderRepo = orderRepo;
+        this.tableRepo = tableRepo;
     }
 
     @Override
@@ -26,6 +31,13 @@ public class OpenOrderCommand implements Command {
         }
 
         Order order = new Order(tableNumber);
+        Table table = tableRepo.getInstance(tableNumber);
+
+        if (table.getStatus() == TableStatus.OCCUPIED) {
+            throw new CommandException("Table is already occupied!");
+        }
+
+        table.setStatus(TableStatus.OCCUPIED);
         orderRepo.add(order);
         return "Successfully opened order!";
     }

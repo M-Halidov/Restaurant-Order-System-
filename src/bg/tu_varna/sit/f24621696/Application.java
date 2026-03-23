@@ -14,10 +14,7 @@ public class Application {
         do {
             System.out.print("> ");
             String line = br.readLine().trim();
-            if (line.equals("exit")) break;
-            System.out.println("Haven't implemented the commands yet. Use exit to stop the program!");
-
+            commandHandler.processInput(line);
         } while(true);
-        br.close();
     }
 }
