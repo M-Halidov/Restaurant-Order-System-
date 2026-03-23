@@ -24,16 +24,14 @@ public class MenuItemRepo implements RepoInterface<MenuItem> {
         for (MenuItem item : menuItems) {
             if (item.getID() == ID) {
                 menuItems.remove(item);
-                System.out.println("Succesfully removed item from menu!");
                 return;
             }
         }
 
-        System.out.println("Item was not found in the menu!");
     }
 
     @Override
-    public MenuItem getInstance(int ID) {
+    public MenuItem searchForID(int ID) {
         MenuItem item = null;
         for (MenuItem currItem : menuItems) {
             if (currItem.getID() == ID) {

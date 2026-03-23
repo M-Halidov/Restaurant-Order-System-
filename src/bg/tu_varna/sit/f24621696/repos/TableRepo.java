@@ -24,16 +24,14 @@ public class TableRepo implements RepoInterface<Table> {
         for (Table table : tableList) {
             if (table.getID() == ID) {
                 tableList.remove(table);
-                System.out.println("Table removed successfully!");
                 return;
             }
         }
 
-        System.out.println("Table was not found!");
     }
 
     @Override
-    public Table getInstance(int ID) {
+    public Table searchForID(int ID) {
         Table table = null;
         for (Table currTable : tableList) {
             if (currTable.getID() == ID) {

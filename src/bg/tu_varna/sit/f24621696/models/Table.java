@@ -10,7 +10,7 @@ public class Table {
     public Table(int ID, int numOfSeats) {
         this.ID = ID;
         this.numOfSeats = numOfSeats;
-        this.status = TableStatus.FREE;
+        this.status = TableStatus.AVAILABLE;
     }
 
     public int getID() {return ID;}
@@ -20,4 +20,12 @@ public class Table {
     public void setNumOfSeats(int numOfSeats) {this.numOfSeats = numOfSeats;}
     public void setStatus(TableStatus status) {this.status = status;}
 
+    @Override
+    public String toString() {
+        return "Table{" +
+                "ID=" + ID +
+                ", numOfSeats=" + numOfSeats +
+                ", status=" + status +
+                '}';
+    }
 }

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Order {
-    private static int nextID;
+    private static int nextID = 1;
     private int ID;
     private int idOfTable;
-    private HashMap<Integer, MenuItem> orderList;
+    private HashMap<Integer, MenuItem> orderList = new HashMap<>();
     private OrderStatus status;
     private String dateAndTime;
     private double finalSum;
@@ -17,7 +17,6 @@ public class Order {
     public Order(int idOfTable) {
         this.ID = nextID++;
         this.idOfTable = idOfTable;
-        this.orderList = new HashMap<>();
         this.status = OrderStatus.OPEN;
     }
 
@@ -35,4 +34,15 @@ public class Order {
     public void setIdOfTable(int idOfTable) {this.idOfTable = idOfTable;}
     public void setStatus(OrderStatus status) {this.status = status;}
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "ID=" + ID +
+                ", finalSum=" + finalSum +
+                ", dateAndTime='" + dateAndTime + '\'' +
+                ", idOfTable=" + idOfTable +
+                ", orderList=" + orderList +
+                ", status=" + status +
+                '}';
+    }
 }

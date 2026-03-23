@@ -4,10 +4,12 @@ import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepo implements RepoInterface<Order> {
-    private List<Order> orderList;
+    private List<Order> orderList = new ArrayList<>();
 
     @Override
     public void add(Order order) {
@@ -23,7 +25,7 @@ public class OrderRepo implements RepoInterface<Order> {
     }
 
     @Override
-    public Order getInstance(int ID) {
+    public Order searchForID(int ID) {
         Order order = null;
         for (Order currOrder : orderList) {
             if (currOrder.getID() == ID) {
