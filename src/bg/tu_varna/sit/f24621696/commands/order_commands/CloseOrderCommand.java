@@ -31,8 +31,8 @@ public class CloseOrderCommand implements Command {
             throw new CommandException("Order ID must be a whole number!");
         }
 
-        Order order = orderRepo.getInstance(orderID);
-        Table table = tableRepo.getInstance(order.getIdOfTable());
+        Order order = orderRepo.searchForID(orderID);
+        Table table = tableRepo.searchForID(order.getIdOfTable());
         table.setStatus(TableStatus.AVAILABLE);
         order.setStatus(OrderStatus.PAID_FOR);
 

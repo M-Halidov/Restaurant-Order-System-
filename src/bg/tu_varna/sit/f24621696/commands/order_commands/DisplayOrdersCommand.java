@@ -24,7 +24,7 @@ public class DisplayOrdersCommand implements Command {
 
         if (args.length == 0) {
             for (Order order : orderRepo.getList()) {
-                sb.append(order).append("\n");
+                sb.append("\n").append(order);
             }
         }
         else {
@@ -37,14 +37,14 @@ public class DisplayOrdersCommand implements Command {
 
             orderStatus = switch (status) {
                 case "open" -> OrderStatus.OPEN;
-                case "paid for", "paid_for" -> OrderStatus.PAID_FOR;
+                case "paid_for" -> OrderStatus.PAID_FOR;
                 case "cancelled" -> OrderStatus.CANCELLED;
                 default -> throw new CommandException("Unknown status " + status + "\nValid: open, paid_for, cancelled");
             };
 
             for (Order order : orderRepo.getList()) {
                 if (order.getStatus() == orderStatus) {
-                    sb.append(order).append("\n");
+                    sb.append("\n").append(order);
                 }
             }
         }

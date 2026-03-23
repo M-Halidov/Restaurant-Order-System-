@@ -31,7 +31,7 @@ public class OpenOrderCommand implements Command {
         }
 
         Order order = new Order(tableNumber);
-        Table table = tableRepo.getInstance(tableNumber);
+        Table table = tableRepo.searchForID(tableNumber);
 
         if (table.getStatus() == TableStatus.OCCUPIED) {
             throw new CommandException("Table is already occupied!");

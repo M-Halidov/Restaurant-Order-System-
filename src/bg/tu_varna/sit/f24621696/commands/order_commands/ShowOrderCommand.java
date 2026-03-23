@@ -28,13 +28,13 @@ public class ShowOrderCommand implements Command {
             throw new CommandException("orderID must be a whole number!");
         }
 
-        Order order = orderRepo.getInstance(orderID);
+        Order order = orderRepo.searchForID(orderID);
 
         StringBuilder sb = new StringBuilder();
         sb.append("---Order---").append("\nOrder Status: " + order.getStatus());
 
         for (Map.Entry<Integer, MenuItem> item : order.getOrderList().entrySet()) {
-            sb.append(item + "\n");
+            sb.append("\n" + item);
         }
 
         return sb.toString();

@@ -36,13 +36,13 @@ public class AddToOrderCommand implements Command {
             throw new CommandException("The arguments must be whole numbers!");
         }
 
-        Order order = orderRepo.getInstance(orderID);
-        MenuItem item = menuItemRepo.getInstance(itemID);
+        Order order = orderRepo.searchForID(orderID);
+        MenuItem item = menuItemRepo.searchForID(itemID);
 
-        if (!order.getOrderList().isEmpty()) {
-            order.getOrderList().putIfAbsent(item.getID(), item);
-            item.setQuantity(item.getQuantity() + quantity);
-        }
+
+        order.getOrderList().putIfAbsent(item.getID(), item);
+        item.setQuantity(item.getQuantity() + quantity);
+
         return "Successfully added item: " + item + " to order!";
 
     }
