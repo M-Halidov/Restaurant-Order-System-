@@ -1,6 +1,9 @@
 package bg.tu_varna.sit.f24621696;
 
 import bg.tu_varna.sit.f24621696.commands.CommandHandler;
+import bg.tu_varna.sit.f24621696.exceptions.CommandException;
+import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
+import bg.tu_varna.sit.f24621696.exceptions.TableException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +17,13 @@ public class Application {
         do {
             System.out.print("> ");
             String line = br.readLine().trim();
-            commandHandler.processInput(line);
+            String result;
+            try {
+                result = commandHandler.processInput(line);
+            } catch (CommandException | MenuItemException | TableException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            System.out.println(result);
         } while(true);
     }
 }
