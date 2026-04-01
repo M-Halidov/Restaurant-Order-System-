@@ -33,7 +33,7 @@ public class RemoveFromOrderCommand implements Command {
 
         Order order = orderRepo.searchForID(orderID);
 
-        order.getOrderList().remove(itemID);
+        order.getItems().remove(itemID);
         return "Successfully removed item from order!";
     }
 }

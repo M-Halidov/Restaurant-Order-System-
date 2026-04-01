@@ -40,7 +40,7 @@ public class AddToOrderCommand implements Command {
         MenuItem item = menuItemRepo.searchForID(itemID);
 
 
-        order.getOrderList().putIfAbsent(item.getID(), item);
+        order.getItems().putIfAbsent(item.getID(), item);
         item.setQuantity(item.getQuantity() + quantity);
 
         return "Successfully added item: " + item + " to order!";

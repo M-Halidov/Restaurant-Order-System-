@@ -17,11 +17,11 @@ public class Application {
         do {
             System.out.print("> ");
             String line = br.readLine().trim();
-            String result;
+            String result="";
             try {
                 result = commandHandler.processInput(line);
             } catch (CommandException | MenuItemException | TableException e) {
-                throw new RuntimeException(e.getMessage());
+                System.out.println(e.getMessage());
             }
             System.out.println(result);
         } while(true);

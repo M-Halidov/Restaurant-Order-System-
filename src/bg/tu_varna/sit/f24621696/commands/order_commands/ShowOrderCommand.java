@@ -33,7 +33,7 @@ public class ShowOrderCommand implements Command {
         StringBuilder sb = new StringBuilder();
         sb.append("---Order---").append("\nOrder Status: " + order.getStatus());
 
-        for (Map.Entry<Integer, MenuItem> item : order.getOrderList().entrySet()) {
+        for (Map.Entry<Integer, MenuItem> item : order.getItems().entrySet()) {
             sb.append("\n" + item);
         }
 

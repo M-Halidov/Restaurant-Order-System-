@@ -9,7 +9,7 @@ public class Order {
     private static int nextID = 1;
     private int ID;
     private int idOfTable;
-    private HashMap<Integer, MenuItem> orderList = new HashMap<>();
+    private HashMap<Integer, MenuItem> items = new HashMap<>();
     private OrderStatus status;
     private String dateAndTime;
     private double finalSum;
@@ -25,9 +25,7 @@ public class Order {
     public int getID() {return ID;}
     public int getIdOfTable() {return idOfTable;}
     public OrderStatus getStatus() {return status;}
-    public HashMap<Integer, MenuItem> getOrderList() {
-        return orderList;
-    }
+    public HashMap<Integer, MenuItem> getItems() {return items;}
 
     public void setDateAndTime(String dateAndTime) {this.dateAndTime = dateAndTime;}
     public void setFinalSum(double finalSum) {this.finalSum = finalSum;}
@@ -41,7 +39,7 @@ public class Order {
                 ", finalSum=" + finalSum +
                 ", dateAndTime='" + dateAndTime + '\'' +
                 ", idOfTable=" + idOfTable +
-                ", orderList=" + orderList +
+                ", orderList=" + items +
                 ", status=" + status +
                 '}';
     }

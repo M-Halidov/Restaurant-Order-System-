@@ -9,6 +9,7 @@ import bg.tu_varna.sit.f24621696.commands.item_commands.DisplayMenuCommands;
 import bg.tu_varna.sit.f24621696.commands.item_commands.RemoveItemCommand;
 import bg.tu_varna.sit.f24621696.commands.table_commands.DisplayTablesCommand;
 import bg.tu_varna.sit.f24621696.commands.table_commands.RemoveTableCommand;
+import bg.tu_varna.sit.f24621696.enums.CommandType;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
@@ -20,27 +21,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandHandler {
-    private Map<String, Command> commands = new HashMap<>();
+    private Map<CommandType, Command> commands = new HashMap<>();
     private MenuItemRepo menuItemRepo = new MenuItemRepo();
     private TableRepo tableRepo = new TableRepo();
     private OrderRepo orderRepo = new OrderRepo();
 
     public CommandHandler() {
-        commands.put("help", new HelpCommand());
-        commands.put("exit", new ExitCommand());
-        commands.put("additem", new AddItemCommand(menuItemRepo));
-        commands.put("removeitem", new RemoveItemCommand(menuItemRepo));
-        commands.put("menu", new DisplayMenuCommands(menuItemRepo));
-        commands.put("addtable", new AddTableCommand(tableRepo));
-        commands.put("removetable", new RemoveTableCommand(tableRepo));
-        commands.put("tables", new DisplayTablesCommand(tableRepo));
-        commands.put("openorder", new OpenOrderCommand(orderRepo, tableRepo));
-        commands.put("addtoorder", new AddToOrderCommand(orderRepo, menuItemRepo));
-        commands.put("removefromorder", new RemoveFromOrderCommand(orderRepo, menuItemRepo));
-        commands.put("showorder", new ShowOrderCommand(orderRepo));
-        commands.put("closeorder", new CloseOrderCommand(orderRepo, tableRepo));
-        commands.put("cancelorder", new CancelOrderCommand(orderRepo, tableRepo));
-        commands.put("orders", new DisplayOrdersCommand(orderRepo));
+        commands.put(CommandType.HELP, new HelpCommand());
+        commands.put(CommandType.EXIT, new ExitCommand());
+        commands.put(CommandType.ADDITEM, new AddItemCommand(menuItemRepo));
+        commands.put(CommandType.REMOVEITEM, new RemoveItemCommand(menuItemRepo));
+        commands.put(CommandType.MENU, new DisplayMenuCommands(menuItemRepo));
+        commands.put(CommandType.ADDTABLE, new AddTableCommand(tableRepo));
+        commands.put(CommandType.REMOVETABLE, new RemoveTableCommand(tableRepo));
+        commands.put(CommandType.TABLES, new DisplayTablesCommand(tableRepo));
+        commands.put(CommandType.OPENORDER, new OpenOrderCommand(orderRepo, tableRepo));
+        commands.put(CommandType.ADDTOORDER, new AddToOrderCommand(orderRepo, menuItemRepo));
+        commands.put(CommandType.REMOVEFROMORDER, new RemoveFromOrderCommand(orderRepo, menuItemRepo));
+        commands.put(CommandType.SHOWORDER, new ShowOrderCommand(orderRepo));
+        commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(orderRepo, tableRepo));
+        commands.put(CommandType.CANCELORDER, new CancelOrderCommand(orderRepo, tableRepo));
+        commands.put(CommandType.ORDERS, new DisplayOrdersCommand(orderRepo));
 
 
         //...
@@ -48,15 +49,13 @@ public class CommandHandler {
 
     public String processInput(String input) {
         String[] parts = input.trim().split(" ");
-        String cmd = parts[0];
+        CommandType cmd = CommandType.fromInput(parts[0]);
         String[] args = Arrays.copyOfRange(parts, 1, parts.length);
-        String result = "";
 
         Command command = commands.get(cmd);
         if (command != null) {
-            result = command.execute(args);
+            return command.execute(args);
         }
         else throw new CommandException("Unknown Command. Type 'help' for a list.");
-        return result;
     }
 }
