@@ -30,8 +30,8 @@ public class OpenOrderCommand implements Command {
             throw new CommandException("tableNumber must be a whole number!");
         }
 
-        Order order = new Order(tableNumber);
         Table table = tableRepo.searchForID(tableNumber);
+        Order order = new Order(table);
 
         if (table.getStatus() == TableStatus.OCCUPIED) {
             throw new CommandException("Table is already occupied!");

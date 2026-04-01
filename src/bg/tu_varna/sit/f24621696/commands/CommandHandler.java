@@ -39,8 +39,8 @@ public class CommandHandler {
         commands.put(CommandType.ADDTOORDER, new AddToOrderCommand(orderRepo, menuItemRepo));
         commands.put(CommandType.REMOVEFROMORDER, new RemoveFromOrderCommand(orderRepo, menuItemRepo));
         commands.put(CommandType.SHOWORDER, new ShowOrderCommand(orderRepo));
-        commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(orderRepo, tableRepo));
-        commands.put(CommandType.CANCELORDER, new CancelOrderCommand(orderRepo, tableRepo));
+        commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(orderRepo));
+        commands.put(CommandType.CANCELORDER, new CancelOrderCommand(orderRepo));
         commands.put(CommandType.ORDERS, new DisplayOrdersCommand(orderRepo));
 
 

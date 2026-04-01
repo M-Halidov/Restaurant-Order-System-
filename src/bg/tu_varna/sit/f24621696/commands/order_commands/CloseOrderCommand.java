@@ -5,17 +5,13 @@ import bg.tu_varna.sit.f24621696.enums.TableStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.Order;
-import bg.tu_varna.sit.f24621696.models.Table;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
-import bg.tu_varna.sit.f24621696.repos.TableRepo;
 
 public class CloseOrderCommand implements Command {
     private OrderRepo orderRepo;
-    private TableRepo tableRepo;
 
-    public CloseOrderCommand(OrderRepo orderRepo, TableRepo tableRepo) {
+    public CloseOrderCommand(OrderRepo orderRepo) {
         this.orderRepo = orderRepo;
-        this.tableRepo = tableRepo;
     }
 
     @Override
@@ -32,8 +28,7 @@ public class CloseOrderCommand implements Command {
         }
 
         Order order = orderRepo.searchForID(orderID);
-        Table table = tableRepo.searchForID(order.getIdOfTable());
-        table.setStatus(TableStatus.AVAILABLE);
+        order.getTable().setStatus(TableStatus.AVAILABLE);
         order.setStatus(OrderStatus.PAID_FOR);
 
         return "Order was successfully paid for!";

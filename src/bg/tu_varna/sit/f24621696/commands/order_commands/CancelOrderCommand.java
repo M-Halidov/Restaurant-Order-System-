@@ -5,17 +5,13 @@ import bg.tu_varna.sit.f24621696.enums.TableStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.Order;
-import bg.tu_varna.sit.f24621696.models.Table;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
-import bg.tu_varna.sit.f24621696.repos.TableRepo;
 
 public class CancelOrderCommand implements Command {
     private OrderRepo orderRepo;
-    private TableRepo tableRepo;
 
-    public CancelOrderCommand(OrderRepo orderRepo, TableRepo tableRepo) {
+    public CancelOrderCommand(OrderRepo orderRepo) {
         this.orderRepo = orderRepo;
-        this.tableRepo = tableRepo;
     }
 
     @Override
@@ -32,9 +28,7 @@ public class CancelOrderCommand implements Command {
         }
 
         Order order = orderRepo.searchForID(orderID);
-        Table table = tableRepo.searchForID(order.getIdOfTable());
-
-        table.setStatus(TableStatus.AVAILABLE);
+        order.getTable().setStatus(TableStatus.AVAILABLE);
         order.setStatus(OrderStatus.CANCELLED);
 
         return "Order was successfully cancelled!";

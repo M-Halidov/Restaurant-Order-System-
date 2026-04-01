@@ -8,28 +8,27 @@ import java.util.HashMap;
 public class Order {
     private static int nextID = 1;
     private int ID;
-    private int idOfTable;
+    private Table table;
     private HashMap<Integer, MenuItem> items = new HashMap<>();
     private OrderStatus status;
     private String dateAndTime;
     private double finalSum;
 
-    public Order(int idOfTable) {
+    public Order(Table table) {
         this.ID = nextID++;
-        this.idOfTable = idOfTable;
+        this.table = table;
         this.status = OrderStatus.OPEN;
     }
 
     public String getDateAndTime() {return dateAndTime;}
     public double getFinalSum() {return finalSum;}
     public int getID() {return ID;}
-    public int getIdOfTable() {return idOfTable;}
+    public Table getTable() {return table;}
     public OrderStatus getStatus() {return status;}
     public HashMap<Integer, MenuItem> getItems() {return items;}
 
     public void setDateAndTime(String dateAndTime) {this.dateAndTime = dateAndTime;}
     public void setFinalSum(double finalSum) {this.finalSum = finalSum;}
-    public void setIdOfTable(int idOfTable) {this.idOfTable = idOfTable;}
     public void setStatus(OrderStatus status) {this.status = status;}
 
     @Override
@@ -38,7 +37,7 @@ public class Order {
                 "ID=" + ID +
                 ", finalSum=" + finalSum +
                 ", dateAndTime='" + dateAndTime + '\'' +
-                ", idOfTable=" + idOfTable +
+                ", table=" + table +
                 ", orderList=" + items +
                 ", status=" + status +
                 '}';
