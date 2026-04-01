@@ -21,14 +21,7 @@ public class AddItemCommand implements Command {
 
         String name = args[0];
         String category = args[1].toLowerCase();
-        ItemCategory itemCategory = ItemCategory.OTHER;
-        itemCategory = switch (category) {
-            case "appetizer" -> ItemCategory.APPETIZER;
-            case "main" -> ItemCategory.MAIN;
-            case "desert" -> ItemCategory.DESERT;
-            case "drink" -> ItemCategory.DRINK;
-            default -> ItemCategory.OTHER;
-        };
+        ItemCategory itemCategory = ItemCategory.getCategory(category);
 
         double price;
         int quantity;

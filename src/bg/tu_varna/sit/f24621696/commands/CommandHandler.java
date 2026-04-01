@@ -49,7 +49,8 @@ public class CommandHandler {
 
     public String processInput(String input) {
         String[] parts = input.trim().split(" ");
-        CommandType cmd = CommandType.fromInput(parts[0]);
+        String tempCmd = parts[0].toLowerCase();
+        CommandType cmd = CommandType.getCommand(tempCmd);
         String[] args = Arrays.copyOfRange(parts, 1, parts.length);
 
         Command command = commands.get(cmd);

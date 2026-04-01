@@ -33,14 +33,7 @@ public class DisplayOrdersCommand implements Command {
                 throw new CommandException("Invalid argument!\norders [status=<status>]");
             }
             status = status.substring("status=".length());
-            OrderStatus orderStatus;
-
-            orderStatus = switch (status) {
-                case "open" -> OrderStatus.OPEN;
-                case "paid_for" -> OrderStatus.PAID_FOR;
-                case "cancelled" -> OrderStatus.CANCELLED;
-                default -> throw new CommandException("Unknown status " + status + "\nValid: open, paid_for, cancelled");
-            };
+            OrderStatus orderStatus = OrderStatus.getStatus(status);
 
             for (Order order : orderRepo.getList()) {
                 if (order.getStatus() == orderStatus) {

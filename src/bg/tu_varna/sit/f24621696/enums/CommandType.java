@@ -26,13 +26,13 @@ public enum CommandType {
     }
 
 
-    public static CommandType fromInput(String input) {
+    public static CommandType getCommand(String command) {
         for (CommandType c : CommandType.values()) {
-            if (c.command.equals(input)) {
+            if (c.command.equals(command)) {
                 return c;
             }
         }
 
-        throw new CommandException("Unknown Command: " + input);
+        throw new CommandException("Unknown Command: " + command);
     }
 }
