@@ -2,6 +2,9 @@ package bg.tu_varna.sit.f24621696.models;
 
 import bg.tu_varna.sit.f24621696.enums.OrderStatus;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,23 +14,25 @@ public class Order {
     private Table table;
     private HashMap<Integer, MenuItem> items = new HashMap<>();
     private OrderStatus status;
-    private String dateAndTime;
+    private LocalDateTime dateAndTime;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private double finalSum;
 
     public Order(Table table) {
         this.ID = nextID++;
         this.table = table;
         this.status = OrderStatus.OPEN;
+        this.dateAndTime = LocalDateTime.now();
     }
 
-    public String getDateAndTime() {return dateAndTime;}
+    public LocalDateTime getDateAndTime() {return dateAndTime;}
     public double getFinalSum() {return finalSum;}
     public int getID() {return ID;}
     public Table getTable() {return table;}
     public OrderStatus getStatus() {return status;}
     public HashMap<Integer, MenuItem> getItems() {return items;}
 
-    public void setDateAndTime(String dateAndTime) {this.dateAndTime = dateAndTime;}
+    public void setDateAndTime(LocalDateTime dateAndTime) {this.dateAndTime = dateAndTime;}
     public void setFinalSum(double finalSum) {this.finalSum = finalSum;}
     public void setStatus(OrderStatus status) {this.status = status;}
 
@@ -36,9 +41,9 @@ public class Order {
         return "Order{" +
                 "ID=" + ID +
                 ", finalSum=" + finalSum +
-                ", dateAndTime='" + dateAndTime + '\'' +
+                ", dateAndTime='" + dateAndTime.format(formatter) + '\'' +
                 ", table=" + table +
-                ", orderList=" + items +
+                ", items=" + items +
                 ", status=" + status +
                 '}';
     }
