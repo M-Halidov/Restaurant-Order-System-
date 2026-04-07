@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepo implements RepoInterface<Order> {
-    private List<Order> orderList = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @Override
     public void add(Order order) {
-        if (orderList.contains(order)) {
+        if (orders.contains(order)) {
             throw new MenuItemException("Repo already contains this item!");
         }
-        orderList.add(order);
+        orders.add(order);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class OrderRepo implements RepoInterface<Order> {
     @Override
     public Order searchForID(int ID) {
         Order order = null;
-        for (Order currOrder : orderList) {
+        for (Order currOrder : orders) {
             if (currOrder.getID() == ID) {
                 order = currOrder;
                 break;
@@ -42,6 +42,6 @@ public class OrderRepo implements RepoInterface<Order> {
 
     @Override
     public List<Order> getList() {
-        return orderList;
+        return orders;
     }
 }

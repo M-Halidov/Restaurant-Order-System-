@@ -8,22 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TableRepo implements RepoInterface<Table> {
-    private List<Table> tableList = new ArrayList<>();
+    private List<Table> tables = new ArrayList<>();
 
     @Override
     public void add(Table table) {
-        if (tableList.contains(table)) {
+        if (tables.contains(table)) {
             throw new TableException("Table already reserved!");
         }
 
-        tableList.add(table);
+        tables.add(table);
     }
 
     @Override
     public void remove(int ID) {
-        for (Table table : tableList) {
+        for (Table table : tables) {
             if (table.getID() == ID) {
-                tableList.remove(table);
+                tables.remove(table);
                 return;
             }
         }
@@ -33,7 +33,7 @@ public class TableRepo implements RepoInterface<Table> {
     @Override
     public Table searchForID(int ID) {
         Table table = null;
-        for (Table currTable : tableList) {
+        for (Table currTable : tables) {
             if (currTable.getID() == ID) {
                 table = currTable;
                 break;
@@ -48,6 +48,6 @@ public class TableRepo implements RepoInterface<Table> {
 
     @Override
     public List<Table> getList() {
-        return tableList;
+        return tables;
     }
 }

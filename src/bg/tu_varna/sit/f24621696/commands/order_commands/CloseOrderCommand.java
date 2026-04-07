@@ -4,8 +4,11 @@ import bg.tu_varna.sit.f24621696.enums.OrderStatus;
 import bg.tu_varna.sit.f24621696.enums.TableStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
+import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.models.Order;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
+
+import java.util.Map;
 
 public class CloseOrderCommand implements Command {
     private OrderRepo orderRepo;

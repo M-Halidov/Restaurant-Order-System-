@@ -40,10 +40,13 @@ public class AddToOrderCommand implements Command {
         MenuItem item = menuItemRepo.searchForID(itemID);
 
 
-        order.getItems().putIfAbsent(item.getID(), item);
-        item.setQuantity(item.getQuantity() + quantity);
+        if (quantity > item.getQuantity()) {
+            throw new CommandException("Given quantity exceeds available stock for " + item.getName() + "! Available: " + item.getQuantity());
+        }
+        item.setQuantity(item.getQuantity() - quantity);
+        order.getItems().put(item, order.getItems().getOrDefault(item, 0) + quantity);
 
-        return "Successfully added item: " + item + " to order!";
+        return "Successfully added item: " + item.getName() + " to order!";
 
     }
 }

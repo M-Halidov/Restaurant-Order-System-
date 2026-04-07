@@ -12,7 +12,7 @@ public class Order {
     private static int nextID = 1;
     private int ID;
     private Table table;
-    private HashMap<Integer, MenuItem> items = new HashMap<>();
+    private HashMap<MenuItem, Integer> items = new HashMap<>();
     private OrderStatus status;
     private LocalDateTime dateAndTime;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -30,7 +30,7 @@ public class Order {
     public int getID() {return ID;}
     public Table getTable() {return table;}
     public OrderStatus getStatus() {return status;}
-    public HashMap<Integer, MenuItem> getItems() {return items;}
+    public HashMap<MenuItem, Integer> getItems() {return items;}
 
     public void setDateAndTime(LocalDateTime dateAndTime) {this.dateAndTime = dateAndTime;}
     public void setFinalSum(double finalSum) {this.finalSum = finalSum;}
