@@ -44,6 +44,7 @@ public class AddToOrderCommand implements Command {
             throw new CommandException("Given quantity exceeds available stock for " + item.getName() + "! Available: " + item.getQuantity());
         }
         item.setQuantity(item.getQuantity() - quantity);
+        order.setFinalSum(order.getFinalSum() + item.getPrice() * quantity);
         order.getItems().put(item, order.getItems().getOrDefault(item, 0) + quantity);
 
         return "Successfully added item: " + item.getName() + " to order!";

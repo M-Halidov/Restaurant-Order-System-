@@ -43,6 +43,7 @@ public class CancelOrderCommand implements Command {
 
         order.getTable().setStatus(TableStatus.AVAILABLE);
         order.setStatus(OrderStatus.CANCELLED);
+        order.setFinalSum(0);
 
         return "Order was successfully cancelled!";
     }

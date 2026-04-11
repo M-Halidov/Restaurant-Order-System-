@@ -15,7 +15,7 @@ public class Order {
     private HashMap<MenuItem, Integer> items = new HashMap<>();
     private OrderStatus status;
     private LocalDateTime dateAndTime;
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private double finalSum;
 
     public Order(Table table) {
