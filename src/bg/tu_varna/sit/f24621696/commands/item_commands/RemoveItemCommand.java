@@ -24,6 +24,6 @@ public class RemoveItemCommand implements Command {
             throw new CommandException("ID must be a whole number!");
         }
         menuItemRepo.remove(ID);
-        return "Item removed successfully!";
+        return "Item removed successfully!\n";
     }
 }

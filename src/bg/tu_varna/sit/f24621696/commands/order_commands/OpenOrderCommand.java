@@ -39,6 +39,6 @@ public class OpenOrderCommand implements Command {
 
         table.setStatus(TableStatus.OCCUPIED);
         orderRepo.add(order);
-        return "Successfully opened order!";
+        return "Successfully opened order!\n";
     }
 }

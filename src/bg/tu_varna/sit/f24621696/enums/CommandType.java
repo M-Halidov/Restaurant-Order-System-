@@ -17,14 +17,16 @@ public enum CommandType {
     SHOWORDER("showorder"),
     CLOSEORDER("closeorder"),
     CANCELORDER("cancelorder"),
-    ORDERS("orders");
+    ORDERS("orders"),
+    REPORT("report"),
+    TOPITEMS("topitems"),
+    LOWSTOCK("lowstock");
 
     private final String command;
 
     CommandType(String command) {
         this.command = command;
     }
-
 
     public static CommandType getCommand(String command) {
         for (CommandType c : CommandType.values()) {

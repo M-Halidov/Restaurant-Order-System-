@@ -1,5 +1,8 @@
 package bg.tu_varna.sit.f24621696.commands;
 
+import bg.tu_varna.sit.f24621696.commands.analytic_commands.LowStockCommand;
+import bg.tu_varna.sit.f24621696.commands.analytic_commands.ProfitReportCommand;
+import bg.tu_varna.sit.f24621696.commands.analytic_commands.TopItemsCommand;
 import bg.tu_varna.sit.f24621696.commands.general_commands.ExitCommand;
 import bg.tu_varna.sit.f24621696.commands.general_commands.HelpCommand;
 import bg.tu_varna.sit.f24621696.commands.item_commands.AddItemCommand;
@@ -42,6 +45,9 @@ public class CommandHandler {
         commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(orderRepo));
         commands.put(CommandType.CANCELORDER, new CancelOrderCommand(orderRepo));
         commands.put(CommandType.ORDERS, new DisplayOrdersCommand(orderRepo));
+        commands.put(CommandType.REPORT, new ProfitReportCommand(orderRepo));
+        commands.put(CommandType.TOPITEMS, new TopItemsCommand(orderRepo));
+        commands.put(CommandType.LOWSTOCK, new LowStockCommand(menuItemRepo));
 
 
         //...

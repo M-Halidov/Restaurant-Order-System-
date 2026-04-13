@@ -1,12 +1,17 @@
 package bg.tu_varna.sit.f24621696.repos;
 
+import bg.tu_varna.sit.f24621696.enums.OrderStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
+import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.models.Order;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OrderRepo implements RepoInterface<Order> {
     private List<Order> orders = new ArrayList<>();
@@ -38,6 +43,24 @@ public class OrderRepo implements RepoInterface<Order> {
         }
 
         return order;
+    }
+
+    public Map<MenuItem, Integer> getOrdersByDateRange(LocalDateTime from, LocalDateTime to) {
+        HashMap<MenuItem, Integer> orderRange = new HashMap<>();
+        for (Order order : orders) {
+
+            if (order.getStatus() == OrderStatus.CANCELLED || order.getStatus() == OrderStatus.OPEN) continue;
+
+            if (!order.getDateAndTime().isBefore(from) && !order.getDateAndTime().isAfter(to)) {
+                for (Map.Entry<MenuItem, Integer> entry : order.getItems().entrySet()) {
+                    MenuItem item = entry.getKey();
+                    int quantity = entry.getValue();
+                    orderRange.put(item, orderRange.getOrDefault(item, 0) + quantity);
+                }
+            }
+        }
+
+        return orderRange;
     }
 
     @Override

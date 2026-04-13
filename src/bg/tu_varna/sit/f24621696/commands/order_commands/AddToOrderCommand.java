@@ -47,7 +47,7 @@ public class AddToOrderCommand implements Command {
         order.setFinalSum(order.getFinalSum() + item.getPrice() * quantity);
         order.getItems().put(item, order.getItems().getOrDefault(item, 0) + quantity);
 
-        return "Successfully added item: " + item.getName() + " to order!";
+        return "Successfully added " + item.getName() + " to order! Amount: " + quantity + ".\n";
 
     }
 }

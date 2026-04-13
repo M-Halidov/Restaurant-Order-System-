@@ -42,6 +42,7 @@ public class DisplayOrdersCommand implements Command {
             }
         }
 
+        sb.append("\n");
         return sb.toString();
     }
 }

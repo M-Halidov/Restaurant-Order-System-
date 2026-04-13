@@ -34,6 +34,6 @@ public class AddItemCommand implements Command {
 
         MenuItem item = new MenuItem(name, itemCategory, price, quantity);
         menuItemRepo.add(item);
-        return "Successfully created item: " + item;
+        return "Successfully created item: " + item + "\n";
     }
 }

@@ -34,6 +34,6 @@ public class CloseOrderCommand implements Command {
         order.getTable().setStatus(TableStatus.AVAILABLE);
         order.setStatus(OrderStatus.PAID_FOR);
 
-        return "Order was successfully paid for!";
+        return "Order was successfully paid for!\n";
     }
 }

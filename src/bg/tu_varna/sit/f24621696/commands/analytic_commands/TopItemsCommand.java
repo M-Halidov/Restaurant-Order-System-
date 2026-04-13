@@ -42,16 +42,7 @@ public class TopItemsCommand implements Command {
         LocalDateTime from = LocalDateTime.parse(fromRaw, formatter);
         LocalDateTime to = LocalDateTime.parse(toRaw, formatter);
 
-        Map<MenuItem, Integer> topItems = new HashMap<>();
-        for (Order order : orderRepo.getList()) {
-            if(!order.getDateAndTime().isBefore(from) && !order.getDateAndTime().isAfter(to)) {
-                for (Map.Entry<MenuItem, Integer> entry : order.getItems().entrySet()) {
-                    MenuItem item = entry.getKey();
-                    int quantity = entry.getValue();
-                    topItems.put(item, topItems.getOrDefault(item,0) + quantity);
-                }
-            }
-        }
+        Map<MenuItem, Integer> topItems = orderRepo.getOrdersByDateRange(from, to);
 
         List<Map.Entry<MenuItem, Integer>> sortedItems = new ArrayList<>(topItems.entrySet());
         sortedItems.sort((val1, val2)-> val2.getValue().compareTo(val1.getValue()));
@@ -60,7 +51,7 @@ public class TopItemsCommand implements Command {
             n = sortedItems.size();
         }
 
-        sb.append("--- Top ").append(n).append(" Items---");
+        sb.append("--- Top ").append(n).append(" Items---").append("\n");
         for (int i = 0; i < n; i++) {
             MenuItem item = sortedItems.get(i).getKey();
             int quantitySold = sortedItems.get(i).getValue();

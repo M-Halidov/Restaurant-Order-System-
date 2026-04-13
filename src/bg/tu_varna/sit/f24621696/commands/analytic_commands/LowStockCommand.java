@@ -5,11 +5,11 @@ import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
 
-public class ItemThresholdCommand implements Command {
-    private MenuItemRepo itemRepo;
+public class LowStockCommand implements Command {
+    private MenuItemRepo menuItemRepo;
 
-    public ItemThresholdCommand(MenuItemRepo itemRepo) {
-        this.itemRepo = itemRepo;
+    public LowStockCommand(MenuItemRepo menuItemRepo) {
+        this.menuItemRepo = menuItemRepo;
     }
 
     @Override
@@ -28,10 +28,10 @@ public class ItemThresholdCommand implements Command {
         }
 
         sb.append("--- Item Threshold ---").append("\n");
-        for (MenuItem item : itemRepo.getList()) {
+        for (MenuItem item : menuItemRepo.getList()) {
             if (item.getQuantity() < threshold) {
                 sb.append("item: ").append(item.getName());
-                sb.append(", quantity:").append(item.getQuantity());
+                sb.append(", quantity:").append(item.getQuantity()).append("\n");
             }
         }
 

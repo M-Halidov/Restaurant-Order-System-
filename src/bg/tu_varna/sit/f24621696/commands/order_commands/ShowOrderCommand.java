@@ -31,12 +31,13 @@ public class ShowOrderCommand implements Command {
         Order order = orderRepo.searchForID(orderID);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("---Order---").append("\nOrder Status: " + order.getStatus());
+        sb.append("---Order---").append("\nOrder Status: ").append(order.getStatus());
 
         for (Map.Entry<MenuItem, Integer> item : order.getItems().entrySet()) {
             sb.append("\n" + item);
         }
 
+        sb.append("\n");
         return sb.toString();
     }
 }

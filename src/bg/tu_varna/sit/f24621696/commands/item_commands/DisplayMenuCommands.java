@@ -21,6 +21,8 @@ public class DisplayMenuCommands implements Command {
             sb.append(item);
         }
 
+        sb.append("\n");
+
         return sb.toString();
     }
 }

@@ -26,7 +26,6 @@ public class ProfitReportCommand implements Command {
         StringBuilder sb = new StringBuilder();
         DateTimeFormatter formatter = Order.formatter;
         double profit = 0;
-        int orderCount = 0;
         int totalItems = 0;
 
         String fromRaw = args[0] + ' ' + args[1];
@@ -40,21 +39,19 @@ public class ProfitReportCommand implements Command {
         sb.append("From: ").append(from);
         sb.append(" To: ").append(to).append("\n");
 
-        for (Order order : orderRepo.getList()) {
-            if(!order.getDateAndTime().isBefore(from) && !order.getDateAndTime().isAfter(to)) {
-                orderCount++;
-                for (Map.Entry<MenuItem, Integer> entry : order.getItems().entrySet()) {
-                    MenuItem item = entry.getKey();
-                    int quantity = entry.getValue();
+        Map<MenuItem, Integer> orderRange = orderRepo.getOrdersByDateRange(from, to);
 
-                    profit += item.getPrice() * quantity;
-                    totalItems += quantity;
-                }
-            }
+        for (Map.Entry<MenuItem, Integer> entry : orderRange.entrySet()) {
+            MenuItem item = entry.getKey();
+            int quantity = entry.getValue();
+
+            profit += item.getPrice() * quantity;
+            totalItems += quantity;
         }
 
-        sb.append("Total orders: ").append(orderCount).append("\n");
+        sb.append("Total orders: ").append(orderRange.size()).append("\n");
         sb.append("Total items sold: ").append(totalItems).append("\n");
+        sb.append("Profit: ").append(profit).append("\n");
 
         return sb.toString();
     }
