@@ -14,7 +14,7 @@ public class DisplayTablesCommand implements Command {
         StringBuilder sb = new StringBuilder();
         sb.append("---Tables---");
         for (Table table : tableRepo.getItems()) {
-            sb.append(table).append("\n");
+            sb.append("\n").append(table);
         }
 
         sb.append("\n");

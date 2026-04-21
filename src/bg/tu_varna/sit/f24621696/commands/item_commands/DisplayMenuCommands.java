@@ -17,7 +17,7 @@ public class DisplayMenuCommands implements Command {
         StringBuilder sb = new StringBuilder();
         sb.append("---Menu---");
         for (MenuItem item : menuItemRepo.getItems()) {
-            sb.append("\nMenu Item " + i++ + ": ");
+            sb.append("\nMenu Item ").append(i++).append(": ");
             sb.append(item);
         }
 

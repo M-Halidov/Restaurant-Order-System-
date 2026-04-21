@@ -36,10 +36,7 @@ public class Table implements Serializable {
 
     @Override
     public String toString() {
-        return "Table{" +
-                "ID=" + ID +
-                ", numOfSeats=" + numOfSeats +
-                ", status=" + status +
-                '}';
+        return "Table ID " + ID + ", number of seats: " + numOfSeats + ", table status: " + status;
     }
+
 }

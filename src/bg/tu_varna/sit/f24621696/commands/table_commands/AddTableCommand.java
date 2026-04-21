@@ -28,6 +28,6 @@ public class AddTableCommand implements Command {
 
         Table table = new Table(ID, seats);
         tableRepo.add(table);
-        return "Successfully added table!\n";
+        return "Successfully added table: " + table + "!\n";
     }
 }

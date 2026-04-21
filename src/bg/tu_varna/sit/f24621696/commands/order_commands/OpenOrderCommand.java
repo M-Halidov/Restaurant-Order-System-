@@ -31,11 +31,11 @@ public class OpenOrderCommand implements Command {
         }
 
         Table table = tableRepo.searchForID(tableNumber);
-        Order order = new Order(table);
-
         if (table.getStatus() == TableStatus.OCCUPIED) {
             throw new CommandException("Table is already occupied!");
         }
+
+        Order order = new Order(table);
 
         table.setStatus(TableStatus.OCCUPIED);
         orderRepo.add(order);

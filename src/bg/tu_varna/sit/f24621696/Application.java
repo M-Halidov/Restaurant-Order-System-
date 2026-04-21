@@ -2,6 +2,7 @@ package bg.tu_varna.sit.f24621696;
 
 import bg.tu_varna.sit.f24621696.commands.CommandHandler;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
+import bg.tu_varna.sit.f24621696.exceptions.FileException;
 import bg.tu_varna.sit.f24621696.exceptions.RepoException;
 import bg.tu_varna.sit.f24621696.repos.RepoManager;
 
@@ -21,7 +22,7 @@ public class Application {
             String result="";
             try {
                 result = commandHandler.processInput(line);
-            } catch (CommandException | RepoException e) {
+            } catch (CommandException | RepoException | FileException e) {
                 System.out.println(e.getMessage());
             }
             System.out.println(result);

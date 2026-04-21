@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Order implements Serializable {
     private static int nextID = 1;
@@ -39,13 +40,19 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "ID=" + ID +
-                ", finalSum=" + finalSum +
-                ", dateAndTime='" + dateAndTime.format(formatter) + '\'' +
-                ", table=" + table +
-                ", items=" + items +
-                ", status=" + status +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order ID ").append(ID).append(":\n").append(table).append("\n");
+        sb.append("status: ").append(status).append(' ').append(dateAndTime.format(formatter)).append(", final sum: ").append(finalSum).append("\n");
+
+        sb.append("Items ordered: ");
+        if (items.isEmpty()) {
+            sb.append("No items found!");
+        } else {
+            for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
+                sb.append("\n").append(entry.getKey().getName()).append(", amount ordered: ").append(entry.getValue());
+            }
+        }
+
+        return sb.toString();
     }
 }

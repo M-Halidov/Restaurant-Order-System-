@@ -45,12 +45,6 @@ public class MenuItem implements Serializable {
 
     @Override
     public String toString() {
-        return "MenuItem{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
-                ", category=" + category +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+        return "MenuItem ID " + ID + ", product name: " + name + ", " + category + ", price: "  + price + ", quantity: " + quantity;
     }
 }
