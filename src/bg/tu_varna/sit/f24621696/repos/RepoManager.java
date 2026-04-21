@@ -88,6 +88,6 @@ public class RepoManager implements Serializable{
     }
 
     public boolean isFileOpen() {
-        return (file !=null && file.exists());
+        return (file !=null);
     }
 }

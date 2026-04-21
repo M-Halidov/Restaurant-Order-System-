@@ -3,6 +3,7 @@ package bg.tu_varna.sit.f24621696.commands;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.LowStockCommand;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.ProfitReportCommand;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.TopItemsCommand;
+import bg.tu_varna.sit.f24621696.commands.file_commands.CloseFileCommand;
 import bg.tu_varna.sit.f24621696.commands.file_commands.OpenFileCommand;
 import bg.tu_varna.sit.f24621696.commands.file_commands.SaveAsCommand;
 import bg.tu_varna.sit.f24621696.commands.file_commands.SaveCommand;
@@ -31,6 +32,7 @@ public class CommandHandler {
     public CommandHandler(RepoManager repoManager) {
         this.repoManager = repoManager;
         commands.put(CommandType.OPEN, new OpenFileCommand(repoManager));
+        commands.put(CommandType.CLOSE, new CloseFileCommand(repoManager));
         commands.put(CommandType.SAVE, new SaveCommand(repoManager));
         commands.put(CommandType.SAVEAS, new SaveAsCommand(repoManager));
         commands.put(CommandType.HELP, new HelpCommand());
@@ -55,11 +57,15 @@ public class CommandHandler {
 
     public String processInput(String input) {
         String[] parts = input.trim().split(" ");
-        String tempCmd = parts[0].toLowerCase();
-        CommandType cmd = CommandType.getCommand(tempCmd);
+        CommandType cmd = CommandType.getCommand(parts[0].toLowerCase());
         String[] args = Arrays.copyOfRange(parts, 1, parts.length);
 
         Command command = commands.get(cmd);
+
+        if (cmd !=  CommandType.OPEN && !repoManager.isFileOpen()) {
+            return "Please open a file!\n";
+        }
+
         if (command != null) {
             return command.execute(args);
         }

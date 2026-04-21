@@ -20,6 +20,7 @@ public class Application {
             System.out.print("> ");
             String line = br.readLine().trim();
             String result="";
+
             try {
                 result = commandHandler.processInput(line);
             } catch (CommandException | RepoException | FileException e) {
