@@ -13,8 +13,16 @@ public class DisplayTablesCommand implements Command {
     public String execute(String[] args) {
         StringBuilder sb = new StringBuilder();
         sb.append("---Tables---");
+        int length = sb.length();
+
         for (Table table : tableRepo.getItems()) {
             sb.append("\n").append(table);
+        }
+
+        if (sb.length() == length) {
+            sb.setLength(0);
+            sb.append("No tables were found! Please add some!\n");
+            return sb.toString();
         }
 
         sb.append("\n");

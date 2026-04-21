@@ -51,6 +51,11 @@ public class TopItemsCommand implements Command {
 
         Map<MenuItem, Integer> topItems = orderRepo.getOrdersByDateRange(from, to);
 
+        if (topItems.isEmpty()) {
+            sb.append("No items found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
+            return sb.toString();
+        }
+
         List<Map.Entry<MenuItem, Integer>> sortedItems = new ArrayList<>(topItems.entrySet());
         sortedItems.sort((val1, val2)-> val2.getValue().compareTo(val1.getValue()));
 

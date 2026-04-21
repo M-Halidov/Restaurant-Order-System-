@@ -13,12 +13,20 @@ public class DisplayMenuCommands implements Command {
 
     @Override
     public String execute(String[] args) {
-        int i = 1;
         StringBuilder sb = new StringBuilder();
         sb.append("---Menu---");
+        int length = sb.length();
+
+        int i = 1;
         for (MenuItem item : menuItemRepo.getItems()) {
             sb.append("\nMenu Item ").append(i++).append(": ");
             sb.append(item);
+        }
+
+        if (sb.length() == length) {
+            sb.setLength(0);
+            sb.append("No menu items were found! Please add some!\n");
+            return sb.toString();
         }
 
         sb.append("\n");

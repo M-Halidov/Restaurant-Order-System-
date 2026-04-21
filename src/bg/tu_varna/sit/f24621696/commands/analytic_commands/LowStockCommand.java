@@ -27,7 +27,8 @@ public class LowStockCommand implements Command {
             throw new CommandException("Threshold must be a whole number!");
         }
 
-        sb.append("--- Item Threshold ---").append("\n");
+        sb.append("--- Items below ").append(threshold).append(" quantity ---\n");
+        int length = sb.length();
         for (MenuItem item : menuItemRepo.getItems()) {
             if (item.getQuantity() < threshold) {
                 sb.append("item: ").append(item.getName());
@@ -35,6 +36,13 @@ public class LowStockCommand implements Command {
             }
         }
 
+        if (sb.length() == length) {
+            sb.setLength(0);
+            sb.append("No such items exist!\n");
+            return sb.toString();
+        }
+
+        sb.append("\n");
         return sb.toString();
     }
 }

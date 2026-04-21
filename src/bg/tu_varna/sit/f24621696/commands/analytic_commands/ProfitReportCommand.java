@@ -41,12 +41,15 @@ public class ProfitReportCommand implements Command {
             throw new CommandException("Wrong format for date and time please stick to: dd/MM/yyyy HH:mm");
         }
 
+        Map<MenuItem, Integer> orderRange = orderRepo.getOrdersByDateRange(from, to);
+        if (orderRange.isEmpty()) {
+            sb.append("No items found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
+            return sb.toString();
+        }
 
         sb.append("--- Profit Report ---").append("\n");
         sb.append("From: ").append(from);
         sb.append(" To: ").append(to).append("\n");
-
-        Map<MenuItem, Integer> orderRange = orderRepo.getOrdersByDateRange(from, to);
 
         for (Map.Entry<MenuItem, Integer> entry : orderRange.entrySet()) {
             MenuItem item = entry.getKey();

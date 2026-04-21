@@ -23,12 +23,19 @@ public class DisplayOrdersCommand implements Command {
         sb.append("---Orders---");
 
         if (args.length == 0) {
+            if (orderRepo.getItems().isEmpty()) {
+                sb.setLength(0);
+                sb.append("No orders were found!\n");
+                return sb.toString();
+            }
+
             for (Order order : orderRepo.getItems()) {
                 sb.append("\n\n").append(order);
             }
         }
         else {
             String status = args[0].toLowerCase().trim();
+            int length = sb.length();
             if (!status.startsWith("status=")) {
                 throw new CommandException("Invalid argument!\norders [status=<status>]");
             }
@@ -39,6 +46,12 @@ public class DisplayOrdersCommand implements Command {
                 if (order.getStatus() == orderStatus) {
                     sb.append("\n\n").append(order);
                 }
+            }
+
+            if (sb.length() == length) {
+                sb.setLength(0);
+                sb.append("No orders with status: ").append(status).append(" were found!\n");
+                return sb.toString();
             }
         }
 
