@@ -4,6 +4,7 @@ import bg.tu_varna.sit.f24621696.commands.CommandHandler;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
 import bg.tu_varna.sit.f24621696.exceptions.TableException;
+import bg.tu_varna.sit.f24621696.repos.RepoManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +13,8 @@ import java.io.InputStreamReader;
 public class Application {
     static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        CommandHandler commandHandler = new CommandHandler();
+        RepoManager repoManager = new RepoManager();
+        CommandHandler commandHandler = new CommandHandler(repoManager);
 
         do {
             System.out.print("> ");

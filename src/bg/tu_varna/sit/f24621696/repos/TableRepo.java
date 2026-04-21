@@ -4,10 +4,12 @@ import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.exceptions.TableException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.Table;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TableRepo implements RepoInterface<Table> {
+public class TableRepo implements RepoInterface<Table>, Serializable {
     private List<Table> tables = new ArrayList<>();
 
     @Override
@@ -47,7 +49,12 @@ public class TableRepo implements RepoInterface<Table> {
     }
 
     @Override
-    public List<Table> getList() {
+    public List<Table> getItems() {
         return tables;
+    }
+
+    @Override
+    public void setItems(List<Table> items) {
+        this.tables = items;
     }
 }

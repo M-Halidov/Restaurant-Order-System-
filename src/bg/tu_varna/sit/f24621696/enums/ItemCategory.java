@@ -2,7 +2,9 @@ package bg.tu_varna.sit.f24621696.enums;
 
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 
-public enum ItemCategory {
+import java.io.Serializable;
+
+public enum ItemCategory implements Serializable {
     APPETIZER("appetizer"),
     MAIN("main"),
     DESERT("desert"),

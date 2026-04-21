@@ -3,6 +3,10 @@ package bg.tu_varna.sit.f24621696.enums;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 
 public enum CommandType {
+    OPEN("open"),
+    CLOSE("close"),
+    SAVE("save"),
+    SAVEAS("saveas"),
     HELP("help"),
     EXIT("exit"),
     ADDITEM("additem"),

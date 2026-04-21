@@ -5,10 +5,11 @@ import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItemRepo implements RepoInterface<MenuItem> {
+public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
     private List<MenuItem> menuItems = new ArrayList<>();
 
     @Override
@@ -47,7 +48,12 @@ public class MenuItemRepo implements RepoInterface<MenuItem> {
     }
 
     @Override
-    public List<MenuItem> getList() {
+    public List<MenuItem> getItems() {
         return menuItems;
+    }
+
+    @Override
+    public void setItems(List<MenuItem> items) {
+        this.menuItems = items;
     }
 }

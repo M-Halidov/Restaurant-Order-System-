@@ -2,7 +2,9 @@ package bg.tu_varna.sit.f24621696.models;
 
 import bg.tu_varna.sit.f24621696.enums.TableStatus;
 
-public class Table {
+import java.io.Serializable;
+
+public class Table implements Serializable {
     private int ID;
     private int numOfSeats;
     private TableStatus status;

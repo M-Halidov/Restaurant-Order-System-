@@ -2,9 +2,10 @@ package bg.tu_varna.sit.f24621696.models;
 
 import bg.tu_varna.sit.f24621696.enums.ItemCategory;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class MenuItem {
+public class MenuItem implements Serializable {
     private static int nextID = 1;
     private int ID;
     private String name;

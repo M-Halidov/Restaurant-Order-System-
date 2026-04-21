@@ -7,13 +7,14 @@ import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.models.Order;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class OrderRepo implements RepoInterface<Order> {
+public class OrderRepo implements RepoInterface<Order>, Serializable {
     private List<Order> orders = new ArrayList<>();
 
     @Override
@@ -64,7 +65,12 @@ public class OrderRepo implements RepoInterface<Order> {
     }
 
     @Override
-    public List<Order> getList() {
+    public List<Order> getItems() {
         return orders;
+    }
+
+    @Override
+    public void setItems(List<Order> items) {
+        this.orders = items;
     }
 }

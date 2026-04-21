@@ -3,12 +3,13 @@ package bg.tu_varna.sit.f24621696.models;
 import bg.tu_varna.sit.f24621696.enums.OrderStatus;
 
 import javax.swing.text.DateFormatter;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Order {
+public class Order implements Serializable {
     private static int nextID = 1;
     private int ID;
     private Table table;
