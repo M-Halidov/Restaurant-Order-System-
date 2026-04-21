@@ -23,7 +23,7 @@ public class DisplayOrdersCommand implements Command {
         sb.append("---Orders---");
 
         if (args.length == 0) {
-            for (Order order : orderRepo.getList()) {
+            for (Order order : orderRepo.getItems()) {
                 sb.append("\n").append(order);
             }
         }
@@ -35,7 +35,7 @@ public class DisplayOrdersCommand implements Command {
             status = status.substring("status=".length());
             OrderStatus orderStatus = OrderStatus.getStatus(status);
 
-            for (Order order : orderRepo.getList()) {
+            for (Order order : orderRepo.getItems()) {
                 if (order.getStatus() == orderStatus) {
                     sb.append("\n").append(order);
                 }

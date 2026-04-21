@@ -28,7 +28,7 @@ public class LowStockCommand implements Command {
         }
 
         sb.append("--- Item Threshold ---").append("\n");
-        for (MenuItem item : menuItemRepo.getList()) {
+        for (MenuItem item : menuItemRepo.getItems()) {
             if (item.getQuantity() < threshold) {
                 sb.append("item: ").append(item.getName());
                 sb.append(", quantity:").append(item.getQuantity()).append("\n");

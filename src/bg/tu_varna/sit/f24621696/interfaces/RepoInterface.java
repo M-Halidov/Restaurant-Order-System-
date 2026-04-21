@@ -5,6 +5,7 @@ import java.util.List;
 public interface RepoInterface<T> {
     void add(T t);
     void remove(int ID);
+    void setItems(List<T> items);
     T searchForID(int ID);
-    List<T> getList();
+    List<T> getItems();
 }

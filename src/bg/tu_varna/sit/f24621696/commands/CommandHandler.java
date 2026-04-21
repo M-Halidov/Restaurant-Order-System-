@@ -3,6 +3,9 @@ package bg.tu_varna.sit.f24621696.commands;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.LowStockCommand;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.ProfitReportCommand;
 import bg.tu_varna.sit.f24621696.commands.analytic_commands.TopItemsCommand;
+import bg.tu_varna.sit.f24621696.commands.file_commands.OpenFileCommand;
+import bg.tu_varna.sit.f24621696.commands.file_commands.SaveAsCommand;
+import bg.tu_varna.sit.f24621696.commands.file_commands.SaveCommand;
 import bg.tu_varna.sit.f24621696.commands.general_commands.ExitCommand;
 import bg.tu_varna.sit.f24621696.commands.general_commands.HelpCommand;
 import bg.tu_varna.sit.f24621696.commands.item_commands.AddItemCommand;
@@ -15,42 +18,39 @@ import bg.tu_varna.sit.f24621696.commands.table_commands.RemoveTableCommand;
 import bg.tu_varna.sit.f24621696.enums.CommandType;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
-import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
-import bg.tu_varna.sit.f24621696.repos.OrderRepo;
-import bg.tu_varna.sit.f24621696.repos.TableRepo;
+import bg.tu_varna.sit.f24621696.repos.RepoManager;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandHandler {
+    private RepoManager repoManager;
     private Map<CommandType, Command> commands = new HashMap<>();
-    private MenuItemRepo menuItemRepo = new MenuItemRepo();
-    private TableRepo tableRepo = new TableRepo();
-    private OrderRepo orderRepo = new OrderRepo();
 
-    public CommandHandler() {
+    public CommandHandler(RepoManager repoManager) {
+        this.repoManager = repoManager;
+        commands.put(CommandType.OPEN, new OpenFileCommand(repoManager));
+        commands.put(CommandType.SAVE, new SaveCommand(repoManager));
+        commands.put(CommandType.SAVEAS, new SaveAsCommand(repoManager));
         commands.put(CommandType.HELP, new HelpCommand());
         commands.put(CommandType.EXIT, new ExitCommand());
-        commands.put(CommandType.ADDITEM, new AddItemCommand(menuItemRepo));
-        commands.put(CommandType.REMOVEITEM, new RemoveItemCommand(menuItemRepo));
-        commands.put(CommandType.MENU, new DisplayMenuCommands(menuItemRepo));
-        commands.put(CommandType.ADDTABLE, new AddTableCommand(tableRepo));
-        commands.put(CommandType.REMOVETABLE, new RemoveTableCommand(tableRepo));
-        commands.put(CommandType.TABLES, new DisplayTablesCommand(tableRepo));
-        commands.put(CommandType.OPENORDER, new OpenOrderCommand(orderRepo, tableRepo));
-        commands.put(CommandType.ADDTOORDER, new AddToOrderCommand(orderRepo, menuItemRepo));
-        commands.put(CommandType.REMOVEFROMORDER, new RemoveFromOrderCommand(orderRepo, menuItemRepo));
-        commands.put(CommandType.SHOWORDER, new ShowOrderCommand(orderRepo));
-        commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(orderRepo));
-        commands.put(CommandType.CANCELORDER, new CancelOrderCommand(orderRepo));
-        commands.put(CommandType.ORDERS, new DisplayOrdersCommand(orderRepo));
-        commands.put(CommandType.REPORT, new ProfitReportCommand(orderRepo));
-        commands.put(CommandType.TOPITEMS, new TopItemsCommand(orderRepo));
-        commands.put(CommandType.LOWSTOCK, new LowStockCommand(menuItemRepo));
-
-
-        //...
+        commands.put(CommandType.ADDITEM, new AddItemCommand(repoManager.getMenuItemRepo()));
+        commands.put(CommandType.REMOVEITEM, new RemoveItemCommand(repoManager.getMenuItemRepo()));
+        commands.put(CommandType.MENU, new DisplayMenuCommands(repoManager.getMenuItemRepo()));
+        commands.put(CommandType.ADDTABLE, new AddTableCommand(repoManager.getTableRepo()));
+        commands.put(CommandType.REMOVETABLE, new RemoveTableCommand(repoManager.getTableRepo()));
+        commands.put(CommandType.TABLES, new DisplayTablesCommand(repoManager.getTableRepo()));
+        commands.put(CommandType.OPENORDER, new OpenOrderCommand(repoManager.getOrderRepo(), repoManager.getTableRepo()));
+        commands.put(CommandType.ADDTOORDER, new AddToOrderCommand(repoManager.getOrderRepo(), repoManager.getMenuItemRepo()));
+        commands.put(CommandType.REMOVEFROMORDER, new RemoveFromOrderCommand(repoManager.getOrderRepo(), repoManager.getMenuItemRepo()));
+        commands.put(CommandType.SHOWORDER, new ShowOrderCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.CLOSEORDER, new CloseOrderCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.CANCELORDER, new CancelOrderCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.ORDERS, new DisplayOrdersCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.REPORT, new ProfitReportCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.TOPITEMS, new TopItemsCommand(repoManager.getOrderRepo()));
+        commands.put(CommandType.LOWSTOCK, new LowStockCommand(repoManager.getMenuItemRepo()));
     }
 
     public String processInput(String input) {

@@ -23,6 +23,6 @@ public class RemoveTableCommand implements Command {
         }
 
         tableRepo.remove(ID);
-        return "Table removed successfully!";
+        return "Table removed successfully!\n";
     }
 }
