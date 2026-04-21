@@ -1,8 +1,7 @@
 package bg.tu_varna.sit.f24621696.repos;
 
 import bg.tu_varna.sit.f24621696.enums.OrderStatus;
-import bg.tu_varna.sit.f24621696.exceptions.CommandException;
-import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
+import bg.tu_varna.sit.f24621696.exceptions.RepoException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.models.Order;
@@ -20,7 +19,7 @@ public class OrderRepo implements RepoInterface<Order>, Serializable {
     @Override
     public void add(Order order) {
         if (orders.contains(order)) {
-            throw new MenuItemException("Repo already contains this item!");
+            throw new RepoException("Repo already contains: " + order);
         }
         orders.add(order);
     }
@@ -40,7 +39,7 @@ public class OrderRepo implements RepoInterface<Order>, Serializable {
             }
         }
         if (order == null) {
-            throw new CommandException("Order with the ID: " + ID + ", was not found!");
+            throw new RepoException("Order with the ID: " + ID + ", was not found!");
         }
 
         return order;

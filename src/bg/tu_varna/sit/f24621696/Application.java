@@ -2,8 +2,7 @@ package bg.tu_varna.sit.f24621696;
 
 import bg.tu_varna.sit.f24621696.commands.CommandHandler;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
-import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
-import bg.tu_varna.sit.f24621696.exceptions.TableException;
+import bg.tu_varna.sit.f24621696.exceptions.RepoException;
 import bg.tu_varna.sit.f24621696.repos.RepoManager;
 
 import java.io.BufferedReader;
@@ -22,7 +21,7 @@ public class Application {
             String result="";
             try {
                 result = commandHandler.processInput(line);
-            } catch (CommandException | MenuItemException | TableException e) {
+            } catch (CommandException | RepoException e) {
                 System.out.println(e.getMessage());
             }
             System.out.println(result);

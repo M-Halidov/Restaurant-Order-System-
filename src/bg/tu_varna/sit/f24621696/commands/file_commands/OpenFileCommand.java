@@ -19,10 +19,11 @@ public class OpenFileCommand implements Command {
             throw new CommandException("Invalid amount of arguments!\nopen <file>");
         }
 
-        String filePath = "src/bg/tu_varna/sit/f24621696/resources/" + args[0] + ".bin";
+        if(!args[0].endsWith(".bin")) throw new CommandException("Please add .bin after the file name!\nexample: open file1.bin");
+
+        String filePath = "src/bg/tu_varna/sit/f24621696/resources/" + args[0];
         File file = new File(filePath);
         repoManager.open(file);
-        System.out.println(repoManager.getFile().length());
 
         return "Successfully opened " + filePath + "\n";
     }

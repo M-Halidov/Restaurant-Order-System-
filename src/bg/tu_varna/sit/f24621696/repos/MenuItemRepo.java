@@ -1,7 +1,6 @@
 package bg.tu_varna.sit.f24621696.repos;
 
-import bg.tu_varna.sit.f24621696.exceptions.CommandException;
-import bg.tu_varna.sit.f24621696.exceptions.MenuItemException;
+import bg.tu_varna.sit.f24621696.exceptions.RepoException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 
@@ -15,7 +14,7 @@ public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
     @Override
     public void add(MenuItem item) {
         if (menuItems.contains(item)) {
-            throw new MenuItemException("Repo already contains this item!");
+            throw new RepoException("Repo already contains this item!");
         }
         menuItems.add(item);
     }
@@ -41,7 +40,7 @@ public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
             }
         }
         if (item == null) {
-            throw new CommandException("Order with the ID: " + ID + ", was not found!");
+            throw new RepoException("Order with the ID: " + ID + ", was not found!");
         }
 
         return item;

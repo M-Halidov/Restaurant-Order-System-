@@ -3,6 +3,7 @@ package bg.tu_varna.sit.f24621696.models;
 import bg.tu_varna.sit.f24621696.enums.TableStatus;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Table implements Serializable {
     private int ID;
@@ -21,6 +22,17 @@ public class Table implements Serializable {
 
     public void setNumOfSeats(int numOfSeats) {this.numOfSeats = numOfSeats;}
     public void setStatus(TableStatus status) {this.status = status;}
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Table table)) return false;
+        return ID == table.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(ID);
+    }
 
     @Override
     public String toString() {

@@ -1,7 +1,6 @@
 package bg.tu_varna.sit.f24621696.repos;
 
-import bg.tu_varna.sit.f24621696.exceptions.CommandException;
-import bg.tu_varna.sit.f24621696.exceptions.TableException;
+import bg.tu_varna.sit.f24621696.exceptions.RepoException;
 import bg.tu_varna.sit.f24621696.interfaces.RepoInterface;
 import bg.tu_varna.sit.f24621696.models.Table;
 
@@ -15,7 +14,7 @@ public class TableRepo implements RepoInterface<Table>, Serializable {
     @Override
     public void add(Table table) {
         if (tables.contains(table)) {
-            throw new TableException("Table already reserved!");
+            throw new RepoException("Table with the id: " + table.getID() + " already exists!");
         }
 
         tables.add(table);
@@ -42,7 +41,7 @@ public class TableRepo implements RepoInterface<Table>, Serializable {
             }
         }
         if (table == null) {
-            throw new CommandException("Order with the ID: " + ID + ", was not found!");
+            throw new RepoException("Order with the ID: " + ID + ", was not found!");
         }
 
         return table;

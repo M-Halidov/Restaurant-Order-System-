@@ -20,6 +20,8 @@ public class SaveAsCommand implements Command {
             throw new CommandException("Invalid amount of arguments!\nopen <file>");
         }
 
+        if(!args[0].endsWith(".bin")) throw new CommandException("Please add .bin after the file name!\nexample: saveas file1.bin");
+
         String filePath = args[0];
         File file = new File(filePath);
         repoManager.write(file);

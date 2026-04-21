@@ -35,12 +35,12 @@ public class MenuItem implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof MenuItem menuItem)) return false;
-        return ID == menuItem.ID && Double.compare(price, menuItem.price) == 0 && Objects.equals(name, menuItem.name) && category == menuItem.category;
+        return Double.compare(price, menuItem.price) == 0 && Objects.equals(name, menuItem.name) && category == menuItem.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name, category, price);
+        return Objects.hash(name, category, price);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class RepoManager implements Serializable{
                 file.createNewFile();
             } catch (IOException e) {
                 this.file = null;
-                throw new CommandException("Failed to open file " + file.getName());
+                throw new FileException("Failed to open file " + file.getName());
             }
             return;
         }
@@ -59,7 +59,7 @@ public class RepoManager implements Serializable{
 
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new FileException(e.getMessage());
+            throw new FileException("Failed to read file " + file.getName());
         }
 
     }
