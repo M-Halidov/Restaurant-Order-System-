@@ -8,6 +8,7 @@ import bg.tu_varna.sit.f24621696.repos.OrderRepo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,8 +40,14 @@ public class TopItemsCommand implements Command {
         String fromRaw = args[1] + ' ' + args[2];
         String toRaw = args[3] + ' ' + args[4];
 
-        LocalDateTime from = LocalDateTime.parse(fromRaw, formatter);
-        LocalDateTime to = LocalDateTime.parse(toRaw, formatter);
+        LocalDateTime from = null;
+        LocalDateTime to = null;
+        try {
+            from = LocalDateTime.parse(fromRaw, formatter);
+            to = LocalDateTime.parse(toRaw, formatter);
+        } catch (DateTimeParseException e) {
+            throw new CommandException("Wrong format for date and time please stick to: dd/MM/yyyy HH:mm");
+        }
 
         Map<MenuItem, Integer> topItems = orderRepo.getOrdersByDateRange(from, to);
 

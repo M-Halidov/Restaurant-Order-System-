@@ -8,6 +8,7 @@ import bg.tu_varna.sit.f24621696.repos.OrderRepo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 public class ProfitReportCommand implements Command {
@@ -31,8 +32,14 @@ public class ProfitReportCommand implements Command {
         String fromRaw = args[0] + ' ' + args[1];
         String toRaw = args[2] + ' ' + args[3];
 
-        LocalDateTime from = LocalDateTime.parse(fromRaw, formatter);
-        LocalDateTime to = LocalDateTime.parse(toRaw, formatter);
+        LocalDateTime from = null;
+        LocalDateTime to = null;
+        try {
+            from = LocalDateTime.parse(fromRaw, formatter);
+            to = LocalDateTime.parse(toRaw, formatter);
+        } catch (DateTimeParseException e) {
+            throw new CommandException("Wrong format for date and time please stick to: dd/MM/yyyy HH:mm");
+        }
 
 
         sb.append("--- Profit Report ---").append("\n");
