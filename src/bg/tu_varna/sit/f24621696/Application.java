@@ -27,6 +27,7 @@ public class Application {
                 System.out.println(e.getMessage());
             }
             System.out.println(result);
+            if (result.equals("Exiting the program...")) break;
         } while(true);
     }
 }
