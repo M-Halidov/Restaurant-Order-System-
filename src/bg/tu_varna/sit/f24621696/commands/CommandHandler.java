@@ -25,10 +25,24 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Processes inputs given by the user and executing the appropriate command.
+ */
 public class CommandHandler {
+    /**
+     * The repository manager providing access to all repositories.
+     */
     private RepoManager repoManager;
+
+    /**
+     * Maps each command type to its corresponding command implementation.
+     */
     private Map<CommandType, Command> commands = new HashMap<>();
 
+    /**
+     * Constructs a CommandHandler and initializes all available commands.
+     * @param repoManager the repository manager to be used by the commands.
+     */
     public CommandHandler(RepoManager repoManager) {
         this.repoManager = repoManager;
         commands.put(CommandType.OPEN, new OpenFileCommand(repoManager));
@@ -55,6 +69,14 @@ public class CommandHandler {
         commands.put(CommandType.LOWSTOCK, new LowStockCommand(repoManager.getMenuItemRepo()));
     }
 
+    /**
+     * Process the user inputted string value by splitting it into an array.
+     * Uses the first index to access the command type.
+     * Copies the rest to a new string array which is passed into corresponding command.
+     * Returns an error message if no file is open and the command is not OPEN.
+     * @param input User given string value containing the command and arguments.
+     * @return The output of the command or an error message if no file is open.
+     */
     public String processInput(String input) {
         String[] parts = input.trim().split(" ");
         CommandType cmd = CommandType.getCommand(parts[0].toLowerCase());
@@ -66,9 +88,6 @@ public class CommandHandler {
             return "Please open a file!\n";
         }
 
-        if (command != null) {
-            return command.execute(args);
-        }
-        else throw new CommandException("Unknown Command. Type 'help' for a list.");
+        return command.execute(args);
     }
 }

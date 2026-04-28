@@ -6,13 +6,29 @@ import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
 import bg.tu_varna.sit.f24621696.repos.MenuItemRepo;
 
+/**
+ * Command used for adding a new menu item to the menu.
+ */
 public class AddItemCommand implements Command {
+    /**
+     * Repository used for storing the menu items.
+     */
     private MenuItemRepo menuItemRepo;
 
+    /**
+     * Constructs AddItemCommand with the specified menu item repo.
+     * @param menuItemRepo The repository used for storing menu items.
+     */
     public AddItemCommand(MenuItemRepo menuItemRepo) {
         this.menuItemRepo = menuItemRepo;
     }
 
+    /**
+     * Parses the arguments from the given string array and assigns them to their corresponding attributes in a menu item.
+     * @param args The arguments containing name, category, price, and quantity.
+     * @return A success message with the details of the created item.
+     * @throws CommandException If the number of arguments is invalid or the price and quantity are not valid numbers.
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 4) {
