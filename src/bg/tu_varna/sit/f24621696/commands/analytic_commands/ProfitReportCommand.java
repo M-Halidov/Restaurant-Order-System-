@@ -25,6 +25,7 @@ public class ProfitReportCommand implements Command {
         }
 
         StringBuilder sb = new StringBuilder();
+        StringBuilder itemSb = new StringBuilder();
         DateTimeFormatter formatter = Order.formatter;
         double profit = 0;
         int totalItems = 0;
@@ -47,21 +48,27 @@ public class ProfitReportCommand implements Command {
             return sb.toString();
         }
 
-        sb.append("--- Profit Report ---").append("\n");
-        sb.append("From: ").append(from);
-        sb.append(" To: ").append(to).append("\n");
-
         for (Map.Entry<MenuItem, Integer> entry : orderRange.entrySet()) {
             MenuItem item = entry.getKey();
             int quantity = entry.getValue();
+            double currItemProfit = item.getPrice() * quantity;
 
-            profit += item.getPrice() * quantity;
+            itemSb.append(item.getName()).append(", individual price: ").append(item.getPrice());
+            itemSb.append(", amount sold: ").append(quantity).append(", profit generated from item: ").append(currItemProfit).append("\n");
+
+            profit += currItemProfit;
             totalItems += quantity;
         }
 
-        sb.append("Total orders: ").append(orderRange.size()).append("\n");
-        sb.append("Total items sold: ").append(totalItems).append("\n");
-        sb.append("Profit: ").append(profit).append("\n");
+        sb.append("--- Profit Report ---").append("\n");
+        sb.append("From: ").append(from.format(formatter));
+        sb.append(" To: ").append(to.format(formatter)).append("\n\n");
+        sb.append("Total orders: ").append(orderRepo.countOrdersByDateRange(from, to)).append("\n");
+        sb.append("Total items sold: ").append(totalItems).append("\n\n");
+
+        sb.append(itemSb.toString());
+
+        sb.append("\nTotal Profit: ").append(profit).append("\n");
 
         return sb.toString();
     }

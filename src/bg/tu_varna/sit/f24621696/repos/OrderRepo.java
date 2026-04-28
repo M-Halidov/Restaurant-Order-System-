@@ -63,6 +63,17 @@ public class OrderRepo implements RepoInterface<Order>, Serializable {
         return orderRange;
     }
 
+    public int countOrdersByDateRange(LocalDateTime from, LocalDateTime to) {
+        int count = 0;
+
+        for (Order order : orders) {
+            if (order.getStatus() == OrderStatus.CANCELLED || order.getStatus() == OrderStatus.OPEN) continue;
+            else if (!order.getDateAndTime().isBefore(from) && !order.getDateAndTime().isAfter(to)) count++;
+        }
+
+        return count;
+    }
+
     @Override
     public List<Order> getItems() {
         return orders;

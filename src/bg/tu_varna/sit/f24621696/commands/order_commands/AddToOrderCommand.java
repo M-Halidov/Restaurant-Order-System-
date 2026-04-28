@@ -1,5 +1,6 @@
 package bg.tu_varna.sit.f24621696.commands.order_commands;
 
+import bg.tu_varna.sit.f24621696.enums.OrderStatus;
 import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.models.MenuItem;
@@ -39,6 +40,9 @@ public class AddToOrderCommand implements Command {
         Order order = orderRepo.searchForID(orderID);
         MenuItem item = menuItemRepo.searchForID(itemID);
 
+        if (order.getStatus() == OrderStatus.CANCELLED || order.getStatus() == OrderStatus.PAID_FOR) {
+            throw new CommandException("Order already concluded please open a new one!");
+        }
 
         if (quantity > item.getQuantity()) {
             throw new CommandException("Given quantity exceeds available stock for " + item.getName() + "! Available: " + item.getQuantity());
@@ -48,6 +52,5 @@ public class AddToOrderCommand implements Command {
         order.getItems().put(item, order.getItems().getOrDefault(item, 0) + quantity);
 
         return "Successfully added " + item.getName() + " to order! Amount: " + quantity + ".\n";
-
     }
 }

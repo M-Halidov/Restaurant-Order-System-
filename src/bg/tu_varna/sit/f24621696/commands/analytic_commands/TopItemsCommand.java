@@ -63,14 +63,23 @@ public class TopItemsCommand implements Command {
             n = sortedItems.size();
         }
 
+        int totalQuantity = 0;
+        for (Map.Entry<MenuItem, Integer> sortedItem : sortedItems) {
+            totalQuantity += sortedItem.getValue();
+        }
+
         sb.append("--- Top ").append(n).append(" Items---").append("\n");
         for (int i = 0; i < n; i++) {
             MenuItem item = sortedItems.get(i).getKey();
             int quantitySold = sortedItems.get(i).getValue();
+            double averagePercentage = (((double)quantitySold/totalQuantity)*100);
+
             sb.append("Item: ").append(item.getName());
-            sb.append(" - ").append(quantitySold).append(" sold\n");
+            sb.append(" - ").append(quantitySold).append(" sold");
+            sb.append(", average user choice: ").append(Math.round(averagePercentage)).append("%\n");
         }
 
+        sb.append("\n");
         return sb.toString();
     }
 }
