@@ -6,13 +6,29 @@ import bg.tu_varna.sit.f24621696.repos.RepoManager;
 
 import java.io.File;
 
+/**
+ * Command that opens and loads a given file.
+ */
 public class OpenFileCommand implements Command {
+    /**
+     * The repository manager providing access to all repositories.
+     */
     private RepoManager repoManager;
 
+    /**
+     * Constructs an OpenFileCommand with the specified repository manager.
+     * @param repoManager Repository manager providing access to all repositories.
+     */
     public OpenFileCommand(RepoManager repoManager) {
         this.repoManager = repoManager;
     }
 
+    /**
+     * Creates a new file which is then later handled by the backend.
+     * @param args The file filename to be loaded.
+     * @return A success message with the location of the file.
+     * @throws CommandException If the number of arguments is invalid or the filename does not end with suffix ".bin".
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 1) {

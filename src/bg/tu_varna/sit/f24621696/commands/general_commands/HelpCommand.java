@@ -2,7 +2,15 @@ package bg.tu_varna.sit.f24621696.commands.general_commands;
 
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 
+/**
+ * Displays all available commands and their descriptions.
+ */
 public class HelpCommand implements Command {
+    /**
+     * Returns a multi-line string of all the commands and their arguments along with a description of their functionality.
+     * @param args Not used.
+     * @return Multi-line string containing all the available commands.
+     */
     @Override
     public String execute(String[] args) {
         return """
