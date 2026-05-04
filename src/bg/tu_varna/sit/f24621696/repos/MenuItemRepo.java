@@ -55,4 +55,9 @@ public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
     public void setItems(List<MenuItem> items) {
         this.menuItems = items;
     }
+
+    @Override
+    public void clearItems() {
+        this.menuItems.clear();
+    }
 }

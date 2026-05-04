@@ -56,4 +56,9 @@ public class TableRepo implements RepoInterface<Table>, Serializable {
     public void setItems(List<Table> items) {
         this.tables = items;
     }
+
+    @Override
+    public void clearItems() {
+        tables.clear();
+    }
 }

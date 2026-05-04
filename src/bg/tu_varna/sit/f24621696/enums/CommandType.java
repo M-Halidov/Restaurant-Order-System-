@@ -144,6 +144,6 @@ public enum CommandType {
             }
         }
 
-        throw new CommandException("Unknown Command " + command + ". Type 'help' for a list.");
+        throw new CommandException("Unknown Command " + command + ". Type 'help' for a list of available commands.");
     }
 }

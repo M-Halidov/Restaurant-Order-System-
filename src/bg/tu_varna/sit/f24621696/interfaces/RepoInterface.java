@@ -37,4 +37,6 @@ public interface RepoInterface<T> {
      * @return a list of all items.
      */
     List<T> getItems();
+
+    void clearItems();
 }

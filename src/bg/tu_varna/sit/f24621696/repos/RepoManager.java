@@ -45,9 +45,15 @@ public class RepoManager implements Serializable{
             return;
         }
 
+        menuItemRepo.clearItems();
+        tableRepo.getItems().clear();
+        orderRepo.getItems().clear();
+
         if (file.length()==0) return;
+
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+
             MenuItemRepo tempItemRepo = (MenuItemRepo) ois.readObject();
             menuItemRepo.setItems(tempItemRepo.getItems());
 

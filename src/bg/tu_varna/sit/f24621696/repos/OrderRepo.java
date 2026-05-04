@@ -83,4 +83,9 @@ public class OrderRepo implements RepoInterface<Order>, Serializable {
     public void setItems(List<Order> items) {
         this.orders = items;
     }
+
+    @Override
+    public void clearItems() {
+        orders.clear();
+    }
 }
