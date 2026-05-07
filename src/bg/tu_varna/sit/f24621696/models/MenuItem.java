@@ -59,55 +59,73 @@ public class MenuItem implements Serializable {
      * Returns the category of the item.
      * @return the item category.
      */
-    public ItemCategory getCategory() {return category;}
+    public ItemCategory getCategory() {
+        return category;
+    }
 
     /**
      * Returns the ID of the item.
      * @return the item ID.
      */
-    public int getID() {return ID;}
+    public int getID() {
+        return ID;
+    }
 
     /**
      * Returns the name of the item.
      * @return the item name.
      */
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
     /**
      * Returns the price of the item.
      * @return the item price.
      */
-    public double getPrice() {return price;}
+    public double getPrice() {
+        return price;
+    }
 
     /**
      * Returns the quantity of the item.
      * @return the item quantity.
      */
-    public int getQuantity() {return quantity;}
+    public int getQuantity() {
+        return quantity;
+    }
 
     /**
      * Sets the category of the item.
      * @param category the new category of the item.
      */
-    public void setCategory(ItemCategory category) {this.category = category;}
+    public void setCategory(ItemCategory category) {
+        this.category = category;
+    }
 
     /**
      * Sets the name of the item.
      * @param name the new name of the item.
      */
-    public void setName(String name) {this.name = name;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * Sets the price of the item.
      * @param price the new price of the item.
      */
-    public void setPrice(double price) {this.price = price;}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     /**
      * Sets the quantity of the item.
      * @param quantity the new quantity of the item.
      */
-    public void setQuantity(int quantity) {this.quantity = quantity;}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     /**
      * Checks equality between two MenuItem objects based on price, name and category.

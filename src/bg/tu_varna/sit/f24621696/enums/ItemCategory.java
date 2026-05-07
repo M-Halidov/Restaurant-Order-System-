@@ -21,7 +21,7 @@ public enum ItemCategory implements Serializable {
     /**
      * Indicates that the food item is a desert.
      */
-    DESERT("desert"),
+    DESSERT("dessert"),
 
     /**
      * Indicates that the food item is a drink.

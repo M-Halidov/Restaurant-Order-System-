@@ -29,6 +29,8 @@ public class TableRepo implements RepoInterface<Table>, Serializable {
             }
         }
 
+        throw new RepoException("Table does not exist!");
+
     }
 
     @Override
@@ -41,7 +43,7 @@ public class TableRepo implements RepoInterface<Table>, Serializable {
             }
         }
         if (table == null) {
-            throw new RepoException("Order with the ID: " + ID + ", was not found!");
+            throw new RepoException("Table with the ID: " + ID + ", was not found!");
         }
 
         return table;

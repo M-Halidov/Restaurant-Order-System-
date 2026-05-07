@@ -8,15 +8,37 @@ import bg.tu_varna.sit.f24621696.models.Table;
 import bg.tu_varna.sit.f24621696.repos.OrderRepo;
 import bg.tu_varna.sit.f24621696.repos.TableRepo;
 
+/**
+ * Command that opens a new order
+ */
 public class OpenOrderCommand implements Command {
+    /**
+     * Repository used for storing the orders.
+     */
     private OrderRepo orderRepo;
+    /**
+     * Repository used for storing the tables.
+     */
     private TableRepo tableRepo;
 
+    /**
+     * Constructs AddToOrderCommand with the specified arguments.
+     * @param orderRepo The repository used for storing orders.
+     * @param tableRepo The repository used for storing tables.
+     */
     public OpenOrderCommand(OrderRepo orderRepo, TableRepo tableRepo) {
         this.orderRepo = orderRepo;
         this.tableRepo = tableRepo;
     }
 
+    /**
+     * Opens a new order and marks the respective table as occupied.
+     * @param args The arguments containing the table number.
+     * @return A success message confirming the order was successfully opened.
+     * @throws CommandException If the number of arguments is invalid.
+     * @throws CommandException If the tableNumber is not a whole number.
+     * @throws CommandException If the table is already occupied.
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 1) {

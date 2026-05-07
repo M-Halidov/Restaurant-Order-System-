@@ -10,15 +10,39 @@ import bg.tu_varna.sit.f24621696.repos.OrderRepo;
 
 import java.awt.*;
 
+/**
+ * Command which adds a menu item to an order.
+ */
 public class AddToOrderCommand implements Command {
+    /**
+     * Repository used for storing the orders.
+     */
     private OrderRepo orderRepo;
+    /**
+     * Repository used for storing the menu items.
+     */
     private MenuItemRepo menuItemRepo;
 
+    /**
+     * Constructs AddToOrderCommand with the specified arguments.
+     * @param orderRepo The repository used for storing orders.
+     * @param menuItemRepo The repository used for storing menu items.
+     */
     public AddToOrderCommand(OrderRepo orderRepo, MenuItemRepo menuItemRepo) {
         this.orderRepo = orderRepo;
         this.menuItemRepo = menuItemRepo;
     }
 
+    /**
+     * Parses the arguments from the input and adds the respective item and its quantity to the order.
+     * Updates the available item quantity and the order's final sum.
+     * @param args The arguments containing orderID, itemID, quantity
+     * @return A success message detailing the addition of the item and its quantity to the order.
+     * @throws CommandException If the number of arguments is invalid.
+     * @throws CommandException If the orderID, itemID or quantity aren't whole numbers.
+     * @throws CommandException If the order is either cancelled or paid for.
+     * @throws CommandException If the requested quantity exceeds the available stock.
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 3) {

@@ -70,55 +70,73 @@ public class Order implements Serializable {
      * Returns the date and time of the order.
      * @return the orders date and time.
      */
-    public LocalDateTime getDateAndTime() {return dateAndTime;}
+    public LocalDateTime getDateAndTime() {
+        return dateAndTime;
+    }
 
     /**
      * Returns the final sum of the order.
      * @return the order final sum.
      */
-    public double getFinalSum() {return finalSum;}
+    public double getFinalSum() {
+        return finalSum;
+    }
 
     /**
      * Returns the ID of the order.
      * @return the order ID.
      */
-    public int getID() {return ID;}
+    public int getID() {
+        return ID;
+    }
 
     /**
      * Returns the table of the order.
      * @return the order table.
      */
-    public Table getTable() {return table;}
+    public Table getTable() {
+        return table;
+    }
 
     /**
      * Returns the status of the order.
      * @return the order status.
      */
-    public OrderStatus getStatus() {return status;}
+    public OrderStatus getStatus() {
+        return status;
+    }
 
     /**
      * Returns the items of the order.
      * @return the order items.
      */
-    public HashMap<MenuItem, Integer> getItems() {return items;}
+    public HashMap<MenuItem, Integer> getItems() {
+        return items;
+    }
 
     /**
      * Sets the date and time of the order.
      * @param dateAndTime the new date and time of the order.
      */
-    public void setDateAndTime(LocalDateTime dateAndTime) {this.dateAndTime = dateAndTime;}
+    public void setDateAndTime(LocalDateTime dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
 
     /**
      * Returns the final sum of the order.
      * @param finalSum the new final sum of the order.
      */
-    public void setFinalSum(double finalSum) {this.finalSum = finalSum;}
+    public void setFinalSum(double finalSum) {
+        this.finalSum = finalSum;
+    }
 
     /**
      * Returns the status of the order.
      * @param status the new status of the order.
      */
-    public void setStatus(OrderStatus status) {this.status = status;}
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
     /**
      * Builds a string representation of the order.

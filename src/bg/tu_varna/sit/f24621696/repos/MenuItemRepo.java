@@ -27,7 +27,7 @@ public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
                 return;
             }
         }
-
+        throw new RepoException("Menu item does not exist!");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MenuItemRepo implements RepoInterface<MenuItem>, Serializable {
             }
         }
         if (item == null) {
-            throw new RepoException("Order with the ID: " + ID + ", was not found!");
+            throw new RepoException("Menu item with the ID: " + ID + ", was not found!");
         }
 
         return item;

@@ -14,13 +14,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Command that displays the most popular item choices.
+ */
 public class TopItemsCommand implements Command {
+    /**
+     * Repository used for storing the orders.
+     */
     private OrderRepo orderRepo;
 
+    /**
+     * Constructs AddToOrderCommand with the specified menu item repo.
+     * @param orderRepo The repository used for storing orders.
+     */
     public TopItemsCommand(OrderRepo orderRepo) {
         this.orderRepo = orderRepo;
     }
 
+    /**
+     * Displays the top n items with the most sales within a given date range, sorted in descending order.
+     * @param args Arguments containing n (total items to be displayed), starting and ending date
+     * @return A comprehensive display of the top n items with the most sales within the specified period.
+     * @throws CommandException If the number of the arguments is invalid.
+     * @throws CommandException If the number of items to be displayed (n) is not a whole number.
+     * @throws CommandException If the starting or ending date does not follow the expected format.
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 5) {
@@ -52,7 +70,7 @@ public class TopItemsCommand implements Command {
         Map<MenuItem, Integer> topItems = orderRepo.getOrdersByDateRange(from, to);
 
         if (topItems.isEmpty()) {
-            sb.append("No items found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
+            sb.append("No menu items were found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
             return sb.toString();
         }
 
@@ -68,7 +86,7 @@ public class TopItemsCommand implements Command {
             totalQuantity += sortedItem.getValue();
         }
 
-        sb.append("--- Top ").append(n).append(" Items---").append("\n");
+        sb.append("--- Top ").append(n).append(" Menu Items---").append("\n");
         for (int i = 0; i < n; i++) {
             MenuItem item = sortedItems.get(i).getKey();
             int quantitySold = sortedItems.get(i).getValue();

@@ -17,7 +17,6 @@ import bg.tu_varna.sit.f24621696.commands.item_commands.RemoveItemCommand;
 import bg.tu_varna.sit.f24621696.commands.table_commands.DisplayTablesCommand;
 import bg.tu_varna.sit.f24621696.commands.table_commands.RemoveTableCommand;
 import bg.tu_varna.sit.f24621696.enums.CommandType;
-import bg.tu_varna.sit.f24621696.exceptions.CommandException;
 import bg.tu_varna.sit.f24621696.interfaces.Command;
 import bg.tu_varna.sit.f24621696.repos.RepoManager;
 

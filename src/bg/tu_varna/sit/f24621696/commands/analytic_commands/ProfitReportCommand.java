@@ -11,13 +11,30 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
 
+/**
+ * Command which calculates the profit within a certain period of time.
+ */
 public class ProfitReportCommand implements Command {
+    /**
+     * Repository used for storing the orders.
+     */
     private OrderRepo orderRepo;
 
+    /**
+     * Constructs AddToOrderCommand with the specified menu item repo.
+     * @param orderRepo The repository used for storing orders.
+     */
     public ProfitReportCommand(OrderRepo orderRepo) {
         this.orderRepo = orderRepo;
     }
 
+    /**
+     * Displays all orders within a given date range, along with each order's profit, total profit, total items sold, and total number of orders.
+     * @param args Arguments containing the starting and ending date
+     * @return A comprehensive display of all orders within the specified period with accompanying analytics.
+     * @throws CommandException If the amount of arguments is invalid.
+     * @throws CommandException If the starting or ending date does not follow the expected format.
+     */
     @Override
     public String execute(String[] args) {
         if (args.length != 4) {
@@ -25,6 +42,11 @@ public class ProfitReportCommand implements Command {
         }
 
         StringBuilder sb = new StringBuilder();
+        /*
+         * A secondary StringBuilder is used to build the order details within the loop.
+         * This allows the total item count to be calculated during iteration and prepended
+         * at the top of the output, avoiding an extra pass through the data.
+         */
         StringBuilder itemSb = new StringBuilder();
         DateTimeFormatter formatter = Order.formatter;
         double profit = 0;
@@ -44,7 +66,7 @@ public class ProfitReportCommand implements Command {
 
         Map<MenuItem, Integer> orderRange = orderRepo.getOrdersByDateRange(from, to);
         if (orderRange.isEmpty()) {
-            sb.append("No items found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
+            sb.append("No orders were found from: ").append(from.format(formatter)).append(" to ").append(to.format(formatter)).append("!\n");
             return sb.toString();
         }
 

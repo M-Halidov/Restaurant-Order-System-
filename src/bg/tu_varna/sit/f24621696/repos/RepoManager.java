@@ -40,7 +40,7 @@ public class RepoManager implements Serializable{
                 file.createNewFile();
             } catch (IOException e) {
                 this.file = null;
-                throw new FileException("Failed to open file " + file.getName());
+                throw new FileException("Failed to open file " + file.getName() + ", Error while finding directory!");
             }
             return;
         }

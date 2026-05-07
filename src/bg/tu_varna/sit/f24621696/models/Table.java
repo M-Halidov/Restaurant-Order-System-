@@ -40,31 +40,41 @@ public class Table implements Serializable {
      * Returns the ID of the table.
      * @return the table ID.
      */
-    public int getID() {return ID;}
+    public int getID() {
+        return ID;
+    }
 
     /**
      * Returns the number of seats available for the table.
      * @return the table seats.
      */
-    public int getNumOfSeats() {return numOfSeats;}
+    public int getNumOfSeats() {
+        return numOfSeats;
+    }
 
     /**
      * Returns the status of the table.
      * @return the table status.
      */
-    public TableStatus getStatus() {return status;}
+    public TableStatus getStatus() {
+        return status;
+    }
 
     /**
      * Sets the number of seats available for the table.
      * @param numOfSeats the new number of seats available for the table.
      */
-    public void setNumOfSeats(int numOfSeats) {this.numOfSeats = numOfSeats;}
+    public void setNumOfSeats(int numOfSeats) {
+        this.numOfSeats = numOfSeats;
+    }
 
     /**
      * Sets the status of the table.
      * @param status the new status of the table.
      */
-    public void setStatus(TableStatus status) {this.status = status;}
+    public void setStatus(TableStatus status) {
+        this.status = status;
+    }
 
     /**
      * Checks equality between two Table objects based ID.
