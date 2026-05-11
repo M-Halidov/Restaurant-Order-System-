@@ -17,7 +17,9 @@ public class DisplayTablesCommand implements Command {
      * Constructs an DisplayTablesCommand with the specified table repository.
      * @param tableRepo the repository used for storing tables.
      */
-    public DisplayTablesCommand(TableRepo tableRepo) {this.tableRepo = tableRepo;}
+    public DisplayTablesCommand(TableRepo tableRepo) {
+        this.tableRepo = tableRepo;
+    }
 
     /**
      * Using StringBuilder it creates a comprehensive output detailing all the tables in the repository.

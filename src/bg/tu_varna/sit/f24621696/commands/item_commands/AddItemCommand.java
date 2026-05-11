@@ -27,7 +27,8 @@ public class AddItemCommand implements Command {
      * Parses the arguments from the given string array and assigns them to their corresponding attributes in a menu item.
      * @param args The arguments containing name, category, price, and quantity.
      * @return A success message with the details of the created item.
-     * @throws CommandException If the number of arguments is invalid or the price and quantity are not valid numbers.
+     * @throws CommandException If the number of arguments is invalid.
+     * @throws CommandException If price and quantity are not valid numbers.
      */
     @Override
     public String execute(String[] args) {

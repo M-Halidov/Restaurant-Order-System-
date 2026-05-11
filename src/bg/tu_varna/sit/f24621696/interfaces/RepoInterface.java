@@ -38,5 +38,8 @@ public interface RepoInterface<T> {
      */
     List<T> getItems();
 
+    /**
+     * Clears all items stored in the repository.
+     */
     void clearItems();
 }

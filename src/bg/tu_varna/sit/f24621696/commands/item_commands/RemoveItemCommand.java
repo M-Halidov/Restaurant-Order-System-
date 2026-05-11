@@ -25,7 +25,8 @@ public class RemoveItemCommand implements Command {
      * Removes the item with the ID given by the user.
      * @param args Argument containing the ID.
      * @return A success message confirming removal of the item.
-     * @throws CommandException If the number of arguments is invalid or if the ID is not a whole number.
+     * @throws CommandException If the number of arguments is invalid.
+     * @throws CommandException If the ID is not a whole number.
      */
     @Override
     public String execute(String[] args) {

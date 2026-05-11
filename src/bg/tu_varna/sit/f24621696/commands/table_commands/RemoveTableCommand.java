@@ -23,7 +23,8 @@ public class RemoveTableCommand implements Command {
      * Parses the argument which is then sent to the repository to remove the table matching the ID.
      * @param args The argument ID.
      * @return A success message notifying of the removal of the specified table.
-     * @throws CommandException If the number of arguments is invalid or the ID is not a whole number.
+     * @throws CommandException If the number of arguments is invalid.
+     * @throws CommandException If the ID is not a whole number.
      */
     @Override
     public String execute(String[] args) {
