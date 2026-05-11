@@ -39,7 +39,7 @@ public class CommandHandler {
     private Map<CommandType, Command> commands = new HashMap<>();
 
     /**
-     * Constructs a CommandHandler and initializes all available commands.
+     * Constructs CommandHandler and initializes all available commands.
      * @param repoManager the repository manager to be used by the commands.
      */
     public CommandHandler(RepoManager repoManager) {

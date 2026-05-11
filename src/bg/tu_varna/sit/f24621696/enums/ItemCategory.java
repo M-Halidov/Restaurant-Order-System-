@@ -39,7 +39,7 @@ public enum ItemCategory implements Serializable {
     private final String itemCategory;
 
     /**
-     * Constructs an ItemCategory with the specified string value.
+     * Constructs ItemCategory with the specified string value.
      * @param itemCategory the string representation of the category.
      */
     ItemCategory(String itemCategory) {

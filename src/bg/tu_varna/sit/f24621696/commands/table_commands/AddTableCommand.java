@@ -15,7 +15,7 @@ public class AddTableCommand implements Command {
     private TableRepo tableRepo;
 
     /**
-     * Constructs an AddTableCommand with the specified table repository.
+     * Constructs AddTableCommand with the specified table repository.
      * @param tableRepo the repository used for storing tables.
      */
     public AddTableCommand(TableRepo tableRepo) {

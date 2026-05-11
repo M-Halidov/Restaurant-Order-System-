@@ -13,7 +13,7 @@ public class CloseFileCommand implements Command {
     private RepoManager repoManager;
 
     /**
-     * Constructs an CloseFileCommand with the specified repository manager.
+     * Constructs CloseFileCommand with the specified repository manager.
      * @param repoManager Repository manager providing access to all repositories.
      */
     public CloseFileCommand(RepoManager repoManager) {

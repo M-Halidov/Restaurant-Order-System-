@@ -14,7 +14,7 @@ public class RemoveTableCommand implements Command {
     private TableRepo tableRepo;
 
     /**
-     * Constructs an RemoveTableCommand with the specified table repository.
+     * Constructs RemoveTableCommand with the specified table repository.
      * @param tableRepo the repository used for storing tables.
      */
     public RemoveTableCommand(TableRepo tableRepo) {this.tableRepo = tableRepo;}

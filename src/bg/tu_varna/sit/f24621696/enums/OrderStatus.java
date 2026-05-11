@@ -29,7 +29,7 @@ public enum OrderStatus implements Serializable {
     private final String status;
 
     /**
-     * Constructs an OrderStatus with the specified string value.
+     * Constructs OrderStatus with the specified string value.
      *
      * @param status the string representation of the status.
      */

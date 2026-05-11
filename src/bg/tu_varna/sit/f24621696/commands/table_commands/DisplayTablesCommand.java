@@ -14,7 +14,7 @@ public class DisplayTablesCommand implements Command {
     private TableRepo tableRepo;
 
     /**
-     * Constructs an DisplayTablesCommand with the specified table repository.
+     * Constructs DisplayTablesCommand with the specified table repository.
      * @param tableRepo the repository used for storing tables.
      */
     public DisplayTablesCommand(TableRepo tableRepo) {

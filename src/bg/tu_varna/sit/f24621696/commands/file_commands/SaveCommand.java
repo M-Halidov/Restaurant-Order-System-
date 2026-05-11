@@ -13,7 +13,7 @@ public class SaveCommand implements Command {
     private RepoManager repoManager;
 
     /**
-     * Constructs an SaveCommand with the specified repository manager.
+     * Constructs SaveCommand with the specified repository manager.
      * @param repoManager Repository manager providing access to all repositories.
      */
     public SaveCommand(RepoManager repoManager) {

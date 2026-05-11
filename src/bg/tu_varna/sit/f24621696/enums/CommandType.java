@@ -124,7 +124,7 @@ public enum CommandType {
     private final String command;
 
     /**
-     * Constructs a CommandType constant with the specified string value.
+     * Constructs CommandType constant with the specified string value.
      * @param command the string representation of the command.
      */
     CommandType(String command) {

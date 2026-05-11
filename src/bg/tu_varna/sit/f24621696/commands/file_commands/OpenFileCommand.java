@@ -16,7 +16,7 @@ public class OpenFileCommand implements Command {
     private RepoManager repoManager;
 
     /**
-     * Constructs an OpenFileCommand with the specified repository manager.
+     * Constructs OpenFileCommand with the specified repository manager.
      * @param repoManager Repository manager providing access to all repositories.
      */
     public OpenFileCommand(RepoManager repoManager) {
